@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vamos Bharat - Smart Tourism & Tourist Safety Platform</title>
-  <meta name="description" content="AI-powered Tourist Safety, Fair Price Guardian & Verified Monument Travel Companion for Smart India Hackathon. Features real-time GPS safety status, verified monument guides, fair fare calculator, AI tourist guardian, translation toolkit, and 1-tap SOS emergency response." />
+  <meta name="description" content="AI-powered Tourist Safety, Fair Price Guardian & Verified Monument Travel Companion for Smart India Hackathon. Features manual location switching, verified monument guides, fair fare calculator, AI tourist guardian, translation toolkit, and 1-tap SOS emergency response." />
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -14,20 +14,33 @@
         extend: {
           colors: {
             brand: {
-              50: '#eff6ff',
-              100: '#dbeafe',
-              500: '#3b82f6',
-              600: '#2563eb',
-              700: '#1d4ed8',
+              50: '#EFF6FF',
+              100: '#DBEAFE',
+              200: '#BFDBFE',
+              500: '#3B82F6',
+              600: '#2563EB',
+              700: '#1D4ED8',
+              800: '#1E40AF',
+              900: '#1E3A8A',
+            },
+            saffron: {
+              400: '#FDBA74',
+              500: '#F97316',
+              600: '#EA580C',
+            },
+            emerald: {
+              500: '#10B981',
+              600: '#059669',
             },
             emergency: {
-              500: '#ef4444',
-              600: '#dc2626',
-              700: '#b91c1c',
-            },
-            surface: '#f8fafc',
-            slateHeading: '#0f172a',
-            slateMuted: '#64748b'
+              500: '#EF4444',
+              600: '#DC2626',
+              700: '#B91C1C',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            heading: ['Outfit', 'Inter', 'sans-serif'],
           }
         }
       }
@@ -38,77 +51,85 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 
-<body class="bg-slate-50 min-h-screen text-slate-900 antialiased selection:bg-blue-600 selection:text-white flex flex-col justify-between">
+<body class="bg-slate-50 min-h-screen text-slate-900 antialiased selection:bg-blue-600 selection:text-white flex flex-col justify-between pb-20 md:pb-0">
 
   <!-- ========================================== -->
-  <!-- 1. CLEAN DESKTOP TOP NAVIGATION BAR        -->
+  <!-- 1. RESPONSIVE DESKTOP & TABLET TOP NAV     -->
   <!-- ========================================== -->
-  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20 gap-6">
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20 gap-4 sm:gap-6">
         
-        <!-- Left: Clean Brand Logo -->
+        <!-- Left: Brand Logo -->
         <div class="flex items-center gap-3 cursor-pointer flex-shrink-0" onclick="window.Router.navigateTo('home-view')">
-          <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white text-2xl font-bold shadow-md">
+          <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-tr from-blue-700 via-indigo-600 to-blue-500 p-0.5 shadow-md shadow-blue-600/20 flex items-center justify-center text-white text-xl sm:text-2xl font-bold flex-shrink-0">
             🛡️
           </div>
           <div>
-            <span class="text-lg font-extrabold tracking-tight text-slate-900 leading-none">Vamos Bharat</span>
-            <span class="block text-xs font-medium text-slate-500 mt-0.5">Tourist Safety & Guide</span>
+            <div class="flex items-center gap-2">
+              <span class="text-lg sm:text-xl font-black tracking-tight text-slate-900 leading-none font-heading">Vamos Bharat</span>
+              <span class="text-[10px] bg-gradient-to-r from-orange-500 to-amber-500 text-white font-black px-1.5 py-0.5 rounded shadow-xs">SIH '26</span>
+            </div>
+            <span class="hidden sm:block text-xs font-semibold text-slate-500 mt-0.5">Tourist Safety & Fair Price Guardian</span>
           </div>
         </div>
 
-        <!-- Center: Clean Navigation Links -->
-        <nav class="hidden md:flex items-center gap-2">
-          <button data-nav-target="home-view" class="px-4 py-2 rounded-xl text-xs font-bold text-blue-600 bg-blue-50 transition">
+        <!-- Center: Clean Navigation Tabs (Desktop/Tablet) -->
+        <nav class="hidden md:flex items-center gap-1 bg-slate-100/90 p-1.5 rounded-2xl border border-slate-200/80">
+          <button data-nav-target="home-view" class="px-3.5 py-2 rounded-xl text-xs font-bold text-blue-600 bg-white shadow-xs transition">
             🏠 Explore
           </button>
           
-          <button data-nav-target="wishlist-view" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-blue-600 hover:bg-slate-100 transition relative">
-            ❤️ Saved Places
+          <button data-nav-target="wishlist-view" class="px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-blue-600 transition relative">
+            ❤️ Saved
             <span class="wishlist-badge-count text-[10px] bg-blue-600 text-white font-bold px-1.5 py-0.2 rounded-full hidden ml-1">0</span>
           </button>
 
-          <button data-nav-target="ai-chat-view" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-blue-600 hover:bg-slate-100 transition">
+          <button data-nav-target="ai-chat-view" class="px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-blue-600 transition">
             🤖 AI Guardian
           </button>
 
-          <button data-nav-target="translation-view" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-blue-600 hover:bg-slate-100 transition">
+          <button data-nav-target="translation-view" class="px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-blue-600 transition">
             🌐 Translator
           </button>
 
-          <button onclick="window.App.openScamGuideModal()" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-blue-600 hover:bg-slate-100 transition">
-            🛡️ Safety Guide
+          <button data-nav-target="profile-view" class="px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-blue-600 transition">
+            👤 Profile
+          </button>
+
+          <button onclick="window.App.openScamGuideModal()" class="px-3 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-blue-600 transition">
+            🛡️ Scam Guide
           </button>
         </nav>
 
-        <!-- Right: GPS Status, SOS Button & Visible Profile -->
-        <div class="flex items-center gap-4 flex-shrink-0">
+        <!-- Right: Location Badge, SOS & Profile Button -->
+        <div class="flex items-center gap-2.5 sm:gap-3.5 flex-shrink-0">
           
-          <!-- Live GPS Status Badge -->
-          <div class="hidden lg:flex items-center gap-2 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-xl text-xs font-semibold text-emerald-800">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-            <span>📍 New Delhi · GPS Active</span>
-          </div>
+          <!-- Interactive Manual Location Selector Button -->
+          <button id="manual-location-btn" class="flex items-center gap-1.5 sm:gap-2 bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 px-2.5 sm:px-3.5 py-2 rounded-2xl text-xs font-bold text-emerald-900 shadow-xs transition active:scale-95 group" title="Click to Change Your Location">
+            <span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-500 flex-shrink-0 animate-pulse"></span>
+            <span id="header-location-badge-text" class="truncate max-w-[110px] sm:max-w-[170px] text-xs">📍 New Delhi</span>
+            <span class="text-[10px] bg-emerald-200 text-emerald-800 font-extrabold px-1.5 py-0.5 rounded group-hover:bg-emerald-300 hidden sm:inline">Change ▾</span>
+          </button>
 
           <!-- Notification Bell -->
-          <button id="notification-bell-btn" class="w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-700 relative transition" title="Tourist Advisories">
-            <span class="text-base">🔔</span>
+          <button id="notification-bell-btn" class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-700 relative transition shadow-xs" title="Tourist Advisories">
+            <span class="text-sm sm:text-base">🔔</span>
             <span class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-rose-500 text-white text-[10px] font-bold flex items-center justify-center ring-2 ring-white">2</span>
           </button>
 
           <!-- High-Contrast Emergency SOS Button -->
-          <button data-trigger-sos class="sos-glow-button px-5 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-extrabold shadow-md flex items-center gap-2 transition transform active:scale-95" title="Emergency SOS Dispatch">
-            <span class="text-base">🚨</span>
-            <span>EMERGENCY SOS</span>
+          <button data-trigger-sos class="sos-glow-button px-3.5 sm:px-4.5 py-2 sm:py-2.5 rounded-2xl bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-700 hover:to-red-700 text-white text-xs font-extrabold shadow-md shadow-rose-600/30 flex items-center gap-1.5 sm:gap-2 transition transform active:scale-95" title="Emergency SOS Dispatch">
+            <span class="text-sm sm:text-base">🚨</span>
+            <span class="font-extrabold">SOS 112</span>
           </button>
 
-          <!-- User Profile: Clearly Visible Picture and Name -->
-          <div data-nav-target="profile-view" class="flex items-center gap-3 pl-3 border-l border-slate-200 cursor-pointer group">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80" alt="Alex Morgan" class="w-10 h-10 rounded-full object-cover border-2 border-blue-600 group-hover:ring-2 group-hover:ring-blue-400 shadow-sm transition" />
-            <div class="hidden sm:block text-left">
-              <span id="header-user-greeting" class="text-xs font-bold text-slate-900 block leading-tight">Alex Morgan</span>
-              <span class="text-[11px] text-slate-500">Profile & Settings</span>
+          <!-- User Profile Avatar/Chip -->
+          <div data-nav-target="profile-view" class="flex items-center gap-2.5 pl-2.5 border-l border-slate-200 cursor-pointer group" title="View Safety Profile & Settings">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80" alt="Alex Morgan" class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl object-cover border-2 border-blue-600 group-hover:ring-2 group-hover:ring-blue-400 shadow-sm transition" />
+            <div class="hidden xl:block text-left">
+              <span id="header-user-greeting" class="text-xs font-extrabold text-slate-900 block leading-tight">Alex Morgan</span>
+              <span class="text-[11px] text-slate-500 font-medium">Safety Profile</span>
             </div>
           </div>
 
@@ -121,63 +142,67 @@
   <!-- ========================================== -->
   <!-- MAIN CONTAINER FOR DESKTOP SPA VIEWS       -->
   <!-- ========================================== -->
-  <main id="app-main-content" class="flex-1 max-w-7xl w-full mx-auto px-6 lg:px-8 py-8">
+  <main id="app-main-content" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
     
     <!-- ========================================== -->
-    <!-- VIEW 1: HOME DASHBOARD (CLEAN & SPACIOUS)  -->
+    <!-- VIEW 1: HOME DASHBOARD                     -->
     <!-- ========================================== -->
-    <section id="home-view" class="app-view space-y-12">
+    <section id="home-view" class="app-view space-y-10 sm:space-y-12">
       
       <!-- Section: Clean Hero Banner -->
-      <div class="hero-gradient-bg rounded-3xl p-8 sm:p-12 text-white shadow-md relative overflow-hidden flex flex-col items-center text-center space-y-5">
+      <div class="hero-gradient-bg rounded-3xl p-6 sm:p-14 text-white shadow-xl relative overflow-hidden flex flex-col items-center text-center space-y-6">
+        
         <div class="max-w-3xl space-y-3 z-10">
-          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md text-xs font-bold text-white border border-white/20">
-            <span>🇮🇳</span> <span>Vamos Bharat · Smart Tourism & Safety</span>
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md text-xs font-bold text-white border border-white/20 shadow-sm">
+            <span>🇮🇳</span> <span>Vamos Bharat · National Smart Tourism Shield</span>
           </div>
-          <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight">
-            Welcome to Vamos Bharat 🇮🇳
+          <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight font-heading">
+            Explore India with Safety & Trust 🇮🇳
           </h1>
-          <p class="text-sm sm:text-base text-blue-100 leading-relaxed max-w-2xl mx-auto">
-            Discover historic monuments, check fair auto fares, and travel safely with your verified AI tourist companion.
+          <p class="text-xs sm:text-base text-blue-100 leading-relaxed max-w-2xl mx-auto font-normal">
+            Discover world-heritage monuments, check fair auto fares, and explore hidden nature gems with verified emergency security.
           </p>
         </div>
 
         <!-- Integrated Clean Search Bar -->
-        <div class="w-full max-w-2xl relative z-10 mt-2">
-          <span class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 text-base">🔍</span>
-          <input type="text" id="global-search-input" placeholder="Search Taj Mahal, Red Fort, Delhi, Jaipur, Mumbai..." class="w-full pl-12 pr-4 py-4 bg-white rounded-2xl text-sm font-medium text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-blue-300 shadow-lg transition" />
+        <div class="w-full max-w-2xl relative z-10 mt-1">
+          <span class="absolute inset-y-0 left-0 pl-4.5 flex items-center pointer-events-none text-slate-400 text-lg">🔍</span>
+          <input type="text" id="global-search-input" placeholder="Search Taj Mahal, Sikkim, Red Fort, Munnar, Jaipur, Udaipur..." class="w-full pl-12 pr-4 py-4 sm:py-4.5 bg-white rounded-2xl text-xs sm:text-sm font-medium text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-blue-400/50 shadow-2xl transition" />
         </div>
 
         <!-- Quick Search Tags -->
         <div class="flex flex-wrap items-center justify-center gap-2 text-xs text-blue-100 z-10 pt-1">
-          <span class="font-medium text-blue-200">Popular:</span>
-          <button onclick="window.App.handleSearch('Taj Mahal')" class="px-3 py-1 rounded-full bg-white/15 hover:bg-white/25 text-white transition">Taj Mahal</button>
-          <button onclick="window.App.handleSearch('Red Fort')" class="px-3 py-1 rounded-full bg-white/15 hover:bg-white/25 text-white transition">Red Fort</button>
-          <button onclick="window.App.handleSearch('Hawa Mahal')" class="px-3 py-1 rounded-full bg-white/15 hover:bg-white/25 text-white transition">Hawa Mahal</button>
-          <button onclick="window.App.handleSearch('Gateway of India')" class="px-3 py-1 rounded-full bg-white/15 hover:bg-white/25 text-white transition">Gateway of India</button>
+          <span class="font-bold text-blue-200">Popular:</span>
+          <button onclick="window.App.handleSearch('Taj Mahal')" class="px-3 py-1 rounded-full bg-white/15 hover:bg-white/25 text-white font-medium transition backdrop-blur-xs border border-white/10">Taj Mahal</button>
+          <button onclick="window.App.handleSearch('Sikkim')" class="px-3 py-1 rounded-full bg-white/15 hover:bg-white/25 text-white font-medium transition backdrop-blur-xs border border-white/10">Sikkim</button>
+          <button onclick="window.App.handleSearch('Red Fort')" class="px-3 py-1 rounded-full bg-white/15 hover:bg-white/25 text-white font-medium transition backdrop-blur-xs border border-white/10">Red Fort</button>
+          <button onclick="window.App.handleSearch('Munnar')" class="px-3 py-1 rounded-full bg-white/15 hover:bg-white/25 text-white font-medium transition backdrop-blur-xs border border-white/10">Munnar</button>
+          <button onclick="window.App.handleSearch('Hawa Mahal')" class="px-3 py-1 rounded-full bg-white/15 hover:bg-white/25 text-white font-medium transition backdrop-blur-xs border border-white/10">Hawa Mahal</button>
+          <button onclick="window.App.handleSearch('Udaipur')" class="px-3 py-1 rounded-full bg-white/15 hover:bg-white/25 text-white font-medium transition backdrop-blur-xs border border-white/10">Udaipur</button>
         </div>
 
-        <!-- Background subtle glow -->
-        <div class="absolute -right-12 -bottom-12 w-64 h-64 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+        <!-- Background decorative ambient glows -->
+        <div class="absolute -right-16 -bottom-16 w-80 h-80 bg-blue-400/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -left-16 -top-16 w-80 h-80 bg-orange-400/15 rounded-full blur-3xl pointer-events-none"></div>
       </div>
 
       <!-- Section: AI Price & Safety Guardian Spotlight Card -->
-      <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xs flex flex-col md:flex-row items-center justify-between gap-6">
-        <div class="space-y-2 max-w-2xl">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold">
+      <div class="bg-gradient-to-r from-blue-50/90 via-white to-slate-50 border border-blue-200/80 rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="space-y-2 max-w-2xl text-left">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold">
             <span>🤖</span> <span>Vamos AI Travel Guardian</span>
           </div>
-          <h2 class="text-xl font-extrabold text-slate-900">Fair Fare & Tourist Scam Protection</h2>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Check official government auto/cab fares, calculate meter rates, and avoid tourist overcharging before you ride.
+          <h2 class="text-xl font-black text-slate-900 font-heading">Fair Fare & Tourist Scam Protection</h2>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+            Check official government auto/cab meter rates, verify ticket prices, and avoid tourist overcharging before you ride.
           </p>
         </div>
 
         <div class="flex flex-wrap items-center gap-3 flex-shrink-0">
-          <button onclick="window.Router.navigateTo('ai-chat-view', { presetQuery: 'Auto fare estimate from Station to Red Fort' })" class="px-5 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-sm transition flex items-center gap-2">
+          <button onclick="window.Router.navigateTo('ai-chat-view', { presetQuery: 'Auto fare estimate from Station to Red Fort' })" class="px-5 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-600/20 transition flex items-center gap-2 active:scale-95">
             <span>🚕</span> <span>Estimate Auto Fare</span>
           </button>
-          <button onclick="window.Router.navigateTo('ai-chat-view', { presetQuery: 'Taj Mahal guide scam check and ticket cost' })" class="px-5 py-3 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition flex items-center gap-2">
+          <button onclick="window.Router.navigateTo('ai-chat-view', { presetQuery: 'Taj Mahal guide scam check and ticket cost' })" class="px-5 py-3 rounded-2xl bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 text-xs font-bold transition flex items-center gap-2 shadow-xs active:scale-95">
             <span>🚨</span> <span>Check Tourist Scams</span>
           </button>
         </div>
@@ -187,8 +212,8 @@
       <div class="space-y-6">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h2 class="text-xl font-extrabold text-slate-900 tracking-tight">Famous Places</h2>
-            <p class="text-xs text-slate-500 mt-0.5">Top heritage attractions and historic monuments</p>
+            <h2 class="text-2xl font-black text-slate-900 tracking-tight font-heading">Famous Places</h2>
+            <p class="text-xs text-slate-500 mt-0.5">Top UNESCO world heritage attractions and historic monuments</p>
           </div>
 
           <!-- State Filter Tabs -->
@@ -206,66 +231,71 @@
         </div>
       </div>
 
-      <!-- Section: Recommended Hidden Gems -->
+      <!-- Section: Recommended Hidden Gems (Opens full detail page on click!) -->
       <div class="space-y-6 pt-6 border-t border-slate-200">
-        <div>
-          <h2 class="text-xl font-extrabold text-slate-900 tracking-tight">Recommended for You</h2>
-          <p class="text-xs text-slate-500 mt-0.5">Curated offbeat destinations, nature reserves, and cultural valleys</p>
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h2 class="text-2xl font-black text-slate-900 tracking-tight font-heading">Recommended for You 🧭</h2>
+            <p class="text-xs text-slate-500 mt-0.5">Curated offbeat eco-destinations, wildlife reserves, and scenic mountain valleys (Tap to view full guide)</p>
+          </div>
+          <span class="text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full self-start sm:self-auto">
+            🌱 100% Eco-Verified
+          </span>
         </div>
 
         <div id="recommended-gems-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <!-- Rendered dynamically by app.js -->
+          <!-- Rendered dynamically by app.js with full clickable routing to detail view -->
         </div>
       </div>
 
     </section>
 
     <!-- ========================================== -->
-    <!-- VIEW 2: MONUMENT DETAIL (CLEAN 2-COLUMN)   -->
+    <!-- VIEW 2: MONUMENT DETAIL                    -->
     <!-- ========================================== -->
     <section id="monument-detail-view" class="app-view hidden space-y-8">
       
       <!-- Top Action Bar -->
-      <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+      <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-200">
         <div class="flex items-center gap-2 text-xs">
-          <button data-back-btn class="px-4 py-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold flex items-center gap-1.5 shadow-xs transition">
+          <button data-back-btn class="px-4 py-2.5 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold flex items-center gap-1.5 shadow-xs transition active:scale-95">
             ‹ <span>Back to Explore</span>
           </button>
           <span class="text-slate-300">/</span>
-          <span id="detail-breadcrumb-state" class="text-slate-500 font-medium">State</span>
+          <span id="detail-breadcrumb-state" class="text-slate-500 font-semibold">State</span>
           <span class="text-slate-300">/</span>
-          <span id="detail-breadcrumb-name" class="font-bold text-slate-800">Monument</span>
+          <span id="detail-breadcrumb-name" class="font-extrabold text-slate-900">Monument</span>
         </div>
 
         <div class="flex items-center gap-3">
-          <button id="detail-favorite-toggle-btn" class="px-5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-bold text-slate-700 shadow-xs hover:border-rose-300 flex items-center gap-2 transition">
+          <button id="detail-favorite-toggle-btn" class="px-5 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-bold text-slate-700 shadow-xs hover:border-rose-300 flex items-center gap-2 transition active:scale-95">
             🤍 <span>Add to Wishlist</span>
           </button>
-          <button onclick="window.SOSSystem.confirmEmergencyCall('1363', 'Ministry of Tourism Helpline')" class="px-4 py-2.5 rounded-xl bg-blue-50 text-blue-700 border border-blue-200 text-xs font-bold hover:bg-blue-100 flex items-center gap-1.5">
+          <button onclick="window.SOSSystem.confirmEmergencyCall('1363', 'Ministry of Tourism Helpline')" class="px-4 py-2.5 rounded-xl bg-blue-50 text-blue-700 border border-blue-200 text-xs font-bold hover:bg-blue-100 flex items-center gap-1.5 transition active:scale-95">
             📞 <span>Tourist Helpline (1363)</span>
           </button>
         </div>
       </div>
 
       <!-- 2-Column Clean Layout -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
         
         <!-- Left Column (5 Cols): Hero Photo, Timings, Tickets & Do's/Don'ts -->
         <div class="lg:col-span-5 space-y-6">
           
           <!-- Hero Photo -->
-          <div class="relative rounded-3xl overflow-hidden shadow-sm border border-slate-200">
-            <img id="detail-hero-image" src="" alt="Monument Hero" class="w-full h-80 object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+          <div class="relative rounded-3xl overflow-hidden shadow-md border border-slate-200 bg-slate-100">
+            <img id="detail-hero-image" src="" alt="Monument Hero" class="w-full h-80 object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=900&q=80';" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent"></div>
             
             <div class="absolute bottom-5 left-5 right-5 text-white">
-              <span id="detail-monument-location" class="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded bg-blue-600/90 inline-block mb-2">
+              <span id="detail-monument-location" class="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-md bg-blue-600/90 inline-block mb-2 shadow-xs">
                 Location
               </span>
-              <h2 id="detail-monument-title" class="text-2xl font-extrabold leading-tight text-white mb-1.5">Monument Name</h2>
+              <h2 id="detail-monument-title" class="text-2xl font-black leading-tight text-white mb-1.5 font-heading drop-shadow">Monument Name</h2>
               
               <div class="flex items-center justify-between text-xs font-bold">
-                <span id="detail-safety-badge" class="text-emerald-400 bg-black/40 px-3 py-1 rounded-full backdrop-blur-xs">
+                <span id="detail-safety-badge" class="text-emerald-400 bg-black/50 px-3 py-1 rounded-full backdrop-blur-xs border border-white/10">
                   🛡️ Safe Zone
                 </span>
                 <span id="detail-rating" class="text-amber-300">
@@ -276,8 +306,8 @@
           </div>
 
           <!-- Quick Timings & Ticket Info -->
-          <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-xs space-y-4">
-            <h3 class="text-xs font-extrabold text-slate-900 uppercase tracking-wider">
+          <div class="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm space-y-4">
+            <h3 class="text-xs font-extrabold text-slate-900 uppercase tracking-wider font-heading">
               Visiting Timings & Ticket Prices
             </h3>
             
@@ -294,8 +324,8 @@
           </div>
 
           <!-- Cultural Do's & Don'ts -->
-          <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-xs space-y-4">
-            <h3 class="text-xs font-extrabold text-slate-900 uppercase tracking-wider">
+          <div class="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm space-y-4">
+            <h3 class="text-xs font-extrabold text-slate-900 uppercase tracking-wider font-heading">
               Cultural Do's & Don'ts
             </h3>
             <ul id="detail-dos-list" class="space-y-2.5">
@@ -309,17 +339,17 @@
         <div class="lg:col-span-7 space-y-8">
           
           <!-- History & Architectural Significance -->
-          <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-xs space-y-4">
-            <h3 class="text-base font-extrabold text-slate-900">Historical Significance</h3>
+          <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm space-y-4">
+            <h3 class="text-base font-extrabold text-slate-900 font-heading">Historical & Cultural Significance</h3>
             <p id="detail-history-text" class="text-sm text-slate-700 leading-relaxed"></p>
             <p id="detail-architecture-text" class="text-xs text-slate-500 leading-relaxed italic border-t border-slate-100 pt-4"></p>
           </div>
 
           <!-- Nearby Amenities Sub-Tabs -->
-          <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-xs space-y-6">
+          <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm space-y-6">
             <div>
-              <h3 class="text-base font-extrabold text-slate-900">Nearby Verified Amenities</h3>
-              <p class="text-xs text-slate-500 mt-0.5">Hotels, cafes, transport stands, and emergency contacts near this monument</p>
+              <h3 class="text-base font-extrabold text-slate-900 font-heading">Nearby Verified Amenities & Services</h3>
+              <p class="text-xs text-slate-500 mt-0.5">Verified restaurants, hotels, prepaid transport, and emergency contacts</p>
             </div>
 
             <!-- Subtabs Navigation -->
@@ -339,13 +369,13 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- VIEW 3: AI TRAVEL GUARDIAN (SPLIT CONSOLE) -->
+    <!-- VIEW 3: AI TRAVEL GUARDIAN                 -->
     <!-- ========================================== -->
     <section id="ai-chat-view" class="app-view hidden space-y-6">
       
       <div class="flex items-center justify-between pb-3 border-b border-slate-200">
         <div>
-          <h2 class="text-xl font-extrabold text-slate-900">Vamos AI Guide 🤖</h2>
+          <h2 class="text-xl font-extrabold text-slate-900 font-heading">Vamos AI Guide 🤖</h2>
           <p class="text-xs text-slate-500 mt-0.5">Fair auto fare estimator and travel safety protector</p>
         </div>
         <button id="clear-chat-btn" class="px-4 py-2 rounded-xl bg-white border border-slate-200 text-xs font-bold text-slate-600 hover:bg-slate-50 transition">
@@ -360,7 +390,7 @@
         <div class="lg:col-span-4 space-y-4">
           
           <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-xs space-y-4">
-            <h3 class="text-xs font-extrabold text-slate-900 uppercase tracking-wider">
+            <h3 class="text-xs font-extrabold text-slate-900 uppercase tracking-wider font-heading">
               Quick Route Fare Estimates
             </h3>
             
@@ -389,7 +419,7 @@
 
           <!-- Common Safety Queries -->
           <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-xs space-y-4">
-            <h3 class="text-xs font-extrabold text-slate-900 uppercase tracking-wider">
+            <h3 class="text-xs font-extrabold text-slate-900 uppercase tracking-wider font-heading">
               Safety Advice
             </h3>
             
@@ -442,7 +472,7 @@
     <section id="translation-view" class="app-view hidden space-y-8">
       
       <div class="pb-3 border-b border-slate-200">
-        <h2 class="text-xl font-extrabold text-slate-900">Tourist Phrasebook & Translator 🌐</h2>
+        <h2 class="text-xl font-extrabold text-slate-900 font-heading">Tourist Phrasebook & Translator 🌐</h2>
         <p class="text-xs text-slate-500 mt-0.5">Essential travel phrases with Hindi audio pronunciation</p>
       </div>
 
@@ -451,7 +481,7 @@
         <!-- Left Panel: Live Custom Translator -->
         <div class="lg:col-span-5 space-y-4">
           <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-xs space-y-4 sticky top-24">
-            <h3 class="text-sm font-extrabold text-slate-900">Live Phrase Translator</h3>
+            <h3 class="text-sm font-extrabold text-slate-900 font-heading">Live Phrase Translator</h3>
             <p class="text-xs text-slate-500 leading-relaxed">Type any phrase to get an instant Hindi translation with native audio speech.</p>
 
             <form id="custom-translate-form" class="space-y-3">
@@ -501,10 +531,12 @@
       
       <div class="flex items-center justify-between pb-4 border-b border-slate-200">
         <div>
-          <h2 class="text-xl font-extrabold text-slate-900">Saved Places ❤️</h2>
-          <p class="text-xs text-slate-500 mt-0.5">Bookmarked monuments, hotels, and cafes</p>
+          <h2 class="text-xl font-extrabold text-slate-900 font-heading">Saved Places ❤️</h2>
+          <p class="text-xs text-slate-500 mt-0.5">Bookmarked monuments, hotels, and destinations</p>
         </div>
-        <span class="wishlist-badge-count text-xs font-bold bg-blue-100 text-blue-700 px-3 py-1 rounded-full">0 saved places</span>
+        <button data-back-btn class="px-4 py-2 rounded-xl bg-white border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 transition">
+          ‹ Back to Explore
+        </button>
       </div>
 
       <!-- Wishlist Grid -->
@@ -525,68 +557,81 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- VIEW 6: PROFILE & SETTINGS                 -->
+    <!-- VIEW 6: PROFILE & EMERGENCY SETTINGS       -->
     <!-- ========================================== -->
     <section id="profile-view" class="app-view hidden space-y-8">
       
-      <div class="pb-3 border-b border-slate-200">
-        <h2 class="text-xl font-extrabold text-slate-900">Profile & Emergency Settings ⚙️</h2>
-        <p class="text-xs text-slate-500 mt-0.5">Manage your emergency ICE contacts and travel preferences</p>
+      <!-- Top Action Bar -->
+      <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+        <div>
+          <h2 class="text-2xl font-black text-slate-900 font-heading">Profile & Emergency Settings ⚙️</h2>
+          <p class="text-xs text-slate-500 mt-0.5">Manage your emergency ICE contacts, active city, and travel safety credentials</p>
+        </div>
+        <button data-back-btn class="px-4 py-2.5 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold text-xs flex items-center gap-1.5 shadow-xs transition active:scale-95">
+          ‹ <span>Back to Explore Dashboard</span>
+        </button>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
         <!-- Left: Profile Badge Card (4 Cols) -->
-        <div class="lg:col-span-4 bg-white border border-slate-200 rounded-3xl p-8 shadow-xs text-center space-y-4">
+        <div class="lg:col-span-4 bg-white border border-slate-200 rounded-3xl p-8 shadow-sm text-center space-y-5">
           <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Avatar" class="w-24 h-24 rounded-full object-cover mx-auto ring-4 ring-blue-600/30 shadow-md" />
           <div>
-            <h3 class="text-base font-extrabold text-slate-900">Alex Morgan</h3>
-            <span class="inline-block text-xs font-bold bg-blue-100 text-blue-700 px-3 py-0.5 rounded-full mt-1">
-              Tourist Pass Active
+            <h3 id="profile-display-name" class="text-lg font-black text-slate-900 font-heading">Alex Morgan</h3>
+            <span class="inline-block text-xs font-bold bg-emerald-100 text-emerald-800 px-3.5 py-1 rounded-full mt-1.5 border border-emerald-200">
+              🛡️ Tourist Pass Active
             </span>
           </div>
 
-          <div class="pt-4 border-t border-slate-100 text-left space-y-2 text-xs">
-            <div class="flex items-center justify-between">
-              <span class="text-slate-500">🛡️ Safety Shield:</span>
-              <span class="font-bold text-emerald-700">Enabled</span>
+          <div class="pt-5 border-t border-slate-100 text-left space-y-3 text-xs">
+            <div class="flex items-center justify-between bg-slate-50 p-3 rounded-xl border border-slate-100">
+              <span class="text-slate-500 font-medium">🛡️ Safety Shield:</span>
+              <span class="font-bold text-emerald-700">24x7 Active</span>
             </div>
-            <div class="flex items-center justify-between">
-              <span class="text-slate-500">📍 Active City:</span>
-              <span class="font-bold text-slate-800">New Delhi</span>
+            <div class="flex items-center justify-between bg-slate-50 p-3 rounded-xl border border-slate-100">
+              <span class="text-slate-500 font-medium">📍 Active City:</span>
+              <span id="profile-active-city" class="font-bold text-blue-700 cursor-pointer hover:underline" onclick="window.App.openLocationModal()">New Delhi (Delhi) ✏️</span>
             </div>
           </div>
+
+          <button onclick="window.App.openLocationModal()" class="w-full py-3 rounded-2xl bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold text-xs transition flex items-center justify-center gap-2 border border-blue-200">
+            <span>📍</span> <span>Switch Active City Location</span>
+          </button>
         </div>
 
         <!-- Right: Settings Form (8 Cols) -->
-        <div class="lg:col-span-8 bg-white border border-slate-200 rounded-3xl p-8 shadow-xs space-y-6">
-          <h3 class="text-xs font-extrabold text-slate-900 uppercase tracking-wider">
-            In Case of Emergency (ICE) Contacts
-          </h3>
+        <div class="lg:col-span-8 bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
+          <div>
+            <h3 class="text-sm font-extrabold text-slate-900 uppercase tracking-wider font-heading">
+              In Case of Emergency (ICE) Contacts
+            </h3>
+            <p class="text-xs text-slate-500 mt-0.5">These contacts will be dispatched automatically with live GPS during an SOS trigger.</p>
+          </div>
 
-          <form id="profile-settings-form" class="space-y-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <form id="profile-settings-form" class="space-y-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div>
-                <label class="block text-xs font-bold text-slate-700 mb-1">Your Full Name</label>
-                <input type="text" id="profile-name-input" value="Alex Morgan" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 focus:ring-2 focus:ring-blue-500" />
+                <label class="block text-xs font-bold text-slate-700 mb-1.5">Your Full Name</label>
+                <input type="text" id="profile-name-input" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 focus:ring-2 focus:ring-blue-500" required />
               </div>
 
               <div>
-                <label class="block text-xs font-bold text-slate-700 mb-1">Emergency Contact Name (ICE)</label>
-                <input type="text" id="profile-ice-name-input" value="Sarah Morgan (Sister)" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 focus:ring-2 focus:ring-blue-500" />
+                <label class="block text-xs font-bold text-slate-700 mb-1.5">Emergency Contact Name (ICE)</label>
+                <input type="text" id="profile-ice-name-input" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 focus:ring-2 focus:ring-blue-500" required />
               </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div>
-                <label class="block text-xs font-bold text-slate-700 mb-1">ICE Contact Phone (for SOS SMS)</label>
-                <input type="text" id="profile-ice-phone-input" value="+91 98765 43210" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 focus:ring-2 focus:ring-blue-500" />
+                <label class="block text-xs font-bold text-slate-700 mb-1.5">ICE Contact Phone (for SOS SMS)</label>
+                <input type="text" id="profile-ice-phone-input" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 focus:ring-2 focus:ring-blue-500" required />
               </div>
 
               <div>
-                <label class="block text-xs font-bold text-slate-700 mb-1">Preferred Language</label>
+                <label class="block text-xs font-bold text-slate-700 mb-1.5">Preferred Language</label>
                 <select id="profile-lang-select" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 focus:ring-2 focus:ring-blue-500">
-                  <option value="en" selected>English</option>
+                  <option value="en">English</option>
                   <option value="hi">हिन्दी (Hindi)</option>
                   <option value="es">Español (Spanish)</option>
                   <option value="fr">Français (French)</option>
@@ -596,9 +641,12 @@
               </div>
             </div>
 
-            <button type="submit" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-sm transition">
-              Save Safety Profile
-            </button>
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xs text-slate-500">🔒 Saved locally on your device</span>
+              <button type="submit" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-md shadow-blue-600/20 transition active:scale-95">
+                Save Safety Profile
+              </button>
+            </div>
           </form>
         </div>
 
@@ -608,10 +656,36 @@
   </main>
 
   <!-- ========================================== -->
+  <!-- RESPONSIVE MOBILE BOTTOM NAVIGATION BAR    -->
+  <!-- ========================================== -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 flex items-center justify-around py-2 px-1 shadow-lg">
+    <button data-nav-target="home-view" class="flex flex-col items-center gap-0.5 text-blue-600 px-2 py-1">
+      <span class="text-base">🏠</span>
+      <span class="text-[10px] font-bold">Explore</span>
+    </button>
+    <button data-nav-target="wishlist-view" class="flex flex-col items-center gap-0.5 text-slate-500 hover:text-blue-600 px-2 py-1">
+      <span class="text-base">❤️</span>
+      <span class="text-[10px] font-bold">Saved</span>
+    </button>
+    <button data-trigger-sos class="flex flex-col items-center gap-0.5 bg-rose-600 text-white px-3 py-1 rounded-2xl shadow-md -mt-4 ring-4 ring-white">
+      <span class="text-base">🚨</span>
+      <span class="text-[10px] font-black">SOS</span>
+    </button>
+    <button data-nav-target="ai-chat-view" class="flex flex-col items-center gap-0.5 text-slate-500 hover:text-blue-600 px-2 py-1">
+      <span class="text-base">🤖</span>
+      <span class="text-[10px] font-bold">AI Chat</span>
+    </button>
+    <button data-nav-target="profile-view" class="flex flex-col items-center gap-0.5 text-slate-500 hover:text-blue-600 px-2 py-1">
+      <span class="text-base">👤</span>
+      <span class="text-[10px] font-bold">Profile</span>
+    </button>
+  </nav>
+
+  <!-- ========================================== -->
   <!-- FOOTER                                     -->
   <!-- ========================================== -->
   <footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
       <div class="flex items-center gap-2">
         <span class="text-base">🛡️</span>
         <span class="font-extrabold text-slate-900">Vamos Bharat</span>
@@ -625,7 +699,49 @@
   </footer>
 
   <!-- ========================================== -->
-  <!-- OVERLAY: EMERGENCY SOS MODAL               -->
+  <!-- OVERLAY 1: MANUAL LOCATION PICKER MODAL    -->
+  <!-- ========================================== -->
+  <div id="location-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl w-full max-w-2xl p-6 sm:p-8 shadow-2xl space-y-6 text-slate-900 animate-fade-in max-h-[90vh] overflow-y-auto">
+      
+      <!-- Header -->
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div>
+          <h2 class="text-lg font-black text-slate-900 font-heading flex items-center gap-2">
+            <span>📍</span> <span>Choose Active Travel Location</span>
+          </h2>
+          <p class="text-xs text-slate-500 mt-0.5">Select your destination city to adapt SOS dispatch, local emergency cells, and nearby guides.</p>
+        </div>
+        <button id="close-location-btn" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 font-bold text-sm">
+          ✕
+        </button>
+      </div>
+
+      <!-- City Cards Grid -->
+      <div class="space-y-2">
+        <div class="text-xs font-extrabold text-slate-500 uppercase tracking-wider">Popular Tourist Hubs:</div>
+        <div id="location-cards-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-72 overflow-y-auto pr-1">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <!-- Custom City Form -->
+      <div class="pt-4 border-t border-slate-100">
+        <div class="text-xs font-extrabold text-slate-500 uppercase tracking-wider mb-2">Or Enter Custom Destination:</div>
+        <form id="custom-location-form" class="flex flex-col sm:flex-row gap-2">
+          <input type="text" id="custom-city-input" placeholder="City or Region name (e.g. Varanasi, Rishikesh, Kochi)" class="flex-1 px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500" required />
+          <input type="text" id="custom-landmark-input" placeholder="Landmark / Hotel (optional)" class="flex-1 px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <button type="submit" class="px-5 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow-sm transition flex-shrink-0">
+            Set Location
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- OVERLAY 2: EMERGENCY SOS MODAL             -->
   <!-- ========================================== -->
   <div id="sos-modal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 hidden items-center justify-center p-4">
     <div class="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-2xl p-6 sm:p-8 shadow-2xl space-y-6 text-white animate-fade-in max-h-[90vh] overflow-y-auto">
@@ -633,21 +749,24 @@
       <div class="flex items-center justify-between pb-4 border-b border-slate-800">
         <div class="flex items-center gap-2.5">
           <span class="w-3 h-3 rounded-full bg-rose-500 animate-ping"></span>
-          <h2 class="text-lg font-extrabold text-rose-400 uppercase tracking-wider">Emergency Distress Hub</h2>
+          <h2 class="text-lg font-extrabold text-rose-400 uppercase tracking-wider font-heading">Emergency Distress Hub</h2>
         </div>
         <button id="close-sos-modal-btn" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-300 font-bold text-sm">
           ✕
         </button>
       </div>
 
-      <!-- GPS Coordinates -->
+      <!-- GPS Coordinates (Bound to Manual Location) -->
       <div class="bg-slate-950 border border-slate-800 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800">
-            📍 Live GPS Broadcaster
-          </span>
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800">
+              📍 Active Location Beacon
+            </span>
+            <button onclick="window.SOSSystem.closeModal(); window.App.openLocationModal()" class="text-[10px] text-blue-400 underline font-semibold">Change City</button>
+          </div>
           <p id="sos-gps-address" class="text-sm font-bold text-white mt-1.5">Connaught Place, New Delhi</p>
-          <p id="sos-gps-coords" class="text-xs font-mono text-slate-400 mt-0.5">28.6139° N, 77.2090° E (± 4m)</p>
+          <p id="sos-gps-coords" class="text-xs font-mono text-slate-400 mt-0.5">28.6139° N, 77.2090° E (± 4m precision)</p>
         </div>
 
         <button id="toggle-siren-btn" class="px-5 py-3 rounded-xl bg-white text-rose-600 font-extrabold text-xs shadow-md transition flex items-center gap-2 flex-shrink-0">
@@ -713,11 +832,11 @@
     </div>
   </div>
 
-  <!-- OVERLAY: NOTIFICATIONS MODAL -->
+  <!-- OVERLAY 3: NOTIFICATIONS MODAL -->
   <div id="notifications-modal" class="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
     <div class="bg-white rounded-3xl w-full max-w-md p-6 shadow-2xl space-y-4 max-h-[80vh] flex flex-col">
       <div class="flex items-center justify-between pb-2 border-b border-slate-100">
-        <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
+        <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2 font-heading">
           <span>🔔</span> <span>Tourist Advisories</span>
         </h3>
         <button id="close-notif-btn" class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 text-xs font-bold">✕</button>
@@ -728,11 +847,11 @@
     </div>
   </div>
 
-  <!-- OVERLAY: SCAM PREVENTION GUIDE MODAL -->
+  <!-- OVERLAY 4: SCAM PREVENTION GUIDE MODAL -->
   <div id="scam-guide-modal" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
     <div class="bg-white rounded-3xl w-full max-w-lg p-6 shadow-2xl space-y-4 max-h-[85vh] flex flex-col">
       <div class="flex items-center justify-between pb-2 border-b border-slate-100">
-        <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
+        <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2 font-heading">
           <span>🛡️</span> <span>Tourist Scam Prevention Guide</span>
         </h3>
         <button onclick="document.getElementById('scam-guide-modal').classList.add('hidden'); document.getElementById('scam-guide-modal').classList.remove('flex')" class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 text-xs font-bold">✕</button>

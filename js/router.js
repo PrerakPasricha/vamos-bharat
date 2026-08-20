@@ -1,5 +1,5 @@
 /**
- * Vamos Bharat - View Router & Navigation Manager (Desktop Support)
+ * Vamos Bharat - View Router & Navigation Manager (Desktop & Responsive Support)
  */
 
 const Router = {
@@ -81,6 +81,14 @@ const Router = {
       if (window.App && typeof window.App.renderWishlist === "function") {
         window.App.renderWishlist();
       }
+    } else if (viewName === "profile-view") {
+      if (window.App && typeof window.App.renderProfileView === "function") {
+        window.App.renderProfileView();
+      }
+    } else if (viewName === "home-view") {
+      if (window.App && typeof window.App.renderHome === "function") {
+        window.App.renderHome();
+      }
     } else if (viewName === "ai-chat-view") {
       if (params.presetQuery && window.AIAssistant) {
         window.AIAssistant.handlePresetQuery(params.presetQuery);
@@ -106,11 +114,11 @@ const Router = {
       const target = btn.getAttribute("data-nav-target");
 
       if (target === viewName) {
-        btn.classList.add("text-blue-600", "bg-blue-50", "font-bold");
-        btn.classList.remove("text-slate-600");
+        btn.classList.add("text-blue-600", "bg-white", "shadow-xs", "font-bold");
+        btn.classList.remove("text-slate-600", "bg-transparent");
       } else {
-        btn.classList.remove("text-blue-600", "bg-blue-50");
-        btn.classList.add("text-slate-600");
+        btn.classList.remove("text-blue-600", "bg-white", "shadow-xs", "font-bold");
+        btn.classList.add("text-slate-600", "bg-transparent");
       }
     });
   }

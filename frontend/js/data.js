@@ -1,10 +1,144 @@
 /**
  * Vamos Bharat - SIH Tourism & Tourist Safety Platform
- * Mock Database: Monuments, States, Amenities, Recommendations, Translations & Safety Alerts
+ * Mock Database: Monuments, Recommended Gems, States, Amenities, Translations & Safety Alerts
  */
 
 const APP_DATA = {
-  // Current user GPS & location status
+  // Available manual locations for tourist switching
+  availableLocations: [
+    {
+      id: "delhi",
+      city: "New Delhi",
+      state: "Delhi",
+      lat: 28.6139,
+      lng: 77.2090,
+      landmark: "Connaught Place, Central Delhi",
+      safetyIndex: "9.5/10",
+      safetyZone: "Low Risk Tourist Corridor",
+      safetyColor: "emerald",
+      policeHelpline: "112 / +91 11 2328 2000",
+      hospital: "Lok Nayak Hospital (LNJP) · 2.3 km"
+    },
+    {
+      id: "agra",
+      city: "Agra",
+      state: "Uttar Pradesh",
+      lat: 27.1751,
+      lng: 78.0421,
+      landmark: "Taj Ganj, Near East Gate",
+      safetyIndex: "9.6/10",
+      safetyZone: "Taj Protected Heritage Zone",
+      safetyColor: "emerald",
+      policeHelpline: "112 / +91 94544 02758",
+      hospital: "SN Medical College Hospital · 4.1 km"
+    },
+    {
+      id: "jaipur",
+      city: "Jaipur",
+      state: "Rajasthan",
+      lat: 26.9124,
+      lng: 75.7873,
+      landmark: "Badi Chaupar, Pink City",
+      safetyIndex: "9.5/10",
+      safetyZone: "Verified Safe Tourist Ward",
+      safetyColor: "emerald",
+      policeHelpline: "112 / +91 141 260 4100",
+      hospital: "SMS Hospital (Sawai Man Singh) · 3.1 km"
+    },
+    {
+      id: "mumbai",
+      city: "Mumbai",
+      state: "Maharashtra",
+      lat: 18.9220,
+      lng: 72.8347,
+      landmark: "Colaba & Gateway Waterfront",
+      safetyIndex: "9.6/10",
+      safetyZone: "Coastal Police Patrol Corridor",
+      safetyColor: "emerald",
+      policeHelpline: "112 / +91 22 2285 6817",
+      hospital: "St. George & GT Hospital · 2.1 km"
+    },
+    {
+      id: "madurai",
+      city: "Madurai",
+      state: "Tamil Nadu",
+      lat: 9.9195,
+      lng: 78.1193,
+      landmark: "Meenakshi Temple Precinct",
+      safetyIndex: "9.8/10",
+      safetyZone: "Temple Security Zone - Highest Safety",
+      safetyColor: "emerald",
+      policeHelpline: "112 / +91 452 234 4360",
+      hospital: "Govt Rajaji Hospital · 2.4 km"
+    },
+    {
+      id: "gangtok",
+      city: "Gangtok",
+      state: "Sikkim",
+      lat: 27.3389,
+      lng: 88.6065,
+      landmark: "MG Marg, Central Gangtok",
+      safetyIndex: "9.9/10",
+      safetyZone: "Eco-Safe Himalayan Green Corridor",
+      safetyColor: "emerald",
+      policeHelpline: "112 / +91 3592 202 022",
+      hospital: "STNM Hospital Gangtok · 3.5 km"
+    },
+    {
+      id: "betla",
+      city: "Betla / Netarhat",
+      state: "Jharkhand",
+      lat: 23.8837,
+      lng: 84.1895,
+      landmark: "Betla Forest Reserve & Sunset Point",
+      safetyIndex: "9.4/10",
+      safetyZone: "Forest Guard & Eco-Tourism Beat",
+      safetyColor: "emerald",
+      policeHelpline: "112 / +91 6562 222 100",
+      hospital: "Latehar District Hospital · 15 km"
+    },
+    {
+      id: "munnar",
+      city: "Munnar",
+      state: "Kerala",
+      lat: 10.0889,
+      lng: 77.0595,
+      landmark: "Tea Valley & High Range Club",
+      safetyIndex: "9.8/10",
+      safetyZone: "Kerala Tourism Police Safe Zone",
+      safetyColor: "emerald",
+      policeHelpline: "112 / +91 4865 230 321",
+      hospital: "Tata General Hospital Munnar · 1.8 km"
+    },
+    {
+      id: "udaipur",
+      city: "Udaipur",
+      state: "Rajasthan",
+      lat: 24.5854,
+      lng: 73.7125,
+      landmark: "Lake Pichola & City Palace Ghat",
+      safetyIndex: "9.7/10",
+      safetyZone: "Heritage Lake Patrol Corridor",
+      safetyColor: "emerald",
+      policeHelpline: "112 / +91 294 241 4600",
+      hospital: "MB General Hospital Udaipur · 2.2 km"
+    },
+    {
+      id: "goa",
+      city: "Panaji / Calangute",
+      state: "Goa",
+      lat: 15.4909,
+      lng: 73.8278,
+      landmark: "Fontainhas & Promenade",
+      safetyIndex: "9.7/10",
+      safetyZone: "Goa Tourist Police Coastal Unit",
+      safetyColor: "emerald",
+      policeHelpline: "112 / +91 832 242 0873",
+      hospital: "Goa Medical College Hospital · 4.8 km"
+    }
+  ],
+
+  // Default active location
   currentLocation: {
     city: "New Delhi",
     state: "Delhi",
@@ -12,7 +146,7 @@ const APP_DATA = {
     lng: 77.2090,
     landmark: "Connaught Place, Central Delhi",
     safetyIndex: "9.5/10",
-    safetyZone: "Safe Zone - Low Risk",
+    safetyZone: "Low Risk Tourist Corridor",
     safetyColor: "emerald"
   },
 
@@ -21,9 +155,9 @@ const APP_DATA = {
     {
       id: "notif-1",
       type: "alert",
-      icon: "⚠️",
-      title: "Weather Advisory: Light Monsoon Fog",
-      message: "Expect light morning mist near Yamuna Expressway (Agra). Drive safely.",
+      icon: "🌤️",
+      title: "Weather Advisory: Clear Skies & Pleasant Breeze",
+      message: "Ideal weather for outdoor sightseeing in Delhi, Agra, and Jaipur. Sun protection recommended.",
       time: "10 mins ago",
       read: false
     },
@@ -31,8 +165,8 @@ const APP_DATA = {
       id: "notif-2",
       type: "safety",
       icon: "🛡️",
-      title: "Tourist Safety: Red Fort Area",
-      message: "Delhi Tourist Police Helpdesk is active at Gate 3. Always hire certified ASI guides.",
+      title: "Verified Tourist Safety Shield Active",
+      message: "Dedicated Tourist Police Helpdesks are active at all major monument gates. Always hire certified ASI guides.",
       time: "1 hour ago",
       read: false
     },
@@ -41,7 +175,7 @@ const APP_DATA = {
       type: "tip",
       icon: "💡",
       title: "Fair Fare Reminder",
-      message: "Prepaid auto booth available outside New Delhi Railway Station. Avoid unmetered rides.",
+      message: "Prepaid auto & cab counters available at railway stations and airports. Use our AI Fare Advisor before booking.",
       time: "3 hours ago",
       read: true
     }
@@ -54,7 +188,7 @@ const APP_DATA = {
       name: "Taj Mahal",
       city: "Agra",
       state: "Uttar Pradesh",
-      category: "World Heritage",
+      category: "World Heritage & Wonder",
       rating: 4.9,
       reviewsCount: "128k+",
       safetyScore: 9.6,
@@ -66,10 +200,10 @@ const APP_DATA = {
         saarc: "₹540"
       },
       image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=900&q=80",
+      fallbackImage: "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=900&q=80",
       gallery: [
         "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1585135497273-1a86b09fe70e?auto=format&fit=crop&w=900&q=80"
+        "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=900&q=80"
       ],
       snippet: "An immense mausoleum of white marble, built in Agra between 1631 and 1648 by Mughal emperor Shah Jahan in memory of his wife Mumtaz Mahal.",
       history: "Commissioned by the fifth Mughal Emperor Shah Jahan in 1631 to house the tomb of his beloved wife Mumtaz Mahal. Built over 22 years by more than 20,000 artisans from India, Persia, and Central Asia using Makrana white marble inlaid with 28 types of precious stones.",
@@ -182,14 +316,6 @@ const APP_DATA = {
             timing: "6:00 AM - 6:30 PM",
             rating: 4.7,
             highlight: "Unobstructed photography vantage point of Taj Mahal reflected in the Yamuna waters."
-          },
-          {
-            name: "Sadar Bazaar Night Market",
-            type: "Local Handicrafts & Petha Sweets",
-            distance: "3.5 km",
-            timing: "11:00 AM - 10:00 PM (Closed Tuesdays)",
-            rating: 4.4,
-            highlight: "Authentic Agra Petha (Panchi Petha), leather goods, and marble souvenir inlay work."
           }
         ],
         emergency: [
@@ -202,7 +328,7 @@ const APP_DATA = {
             action: "Instant Tourist Assistance"
           },
           {
-            name: "SN Medical College & District Hospital",
+            name: "SN Medical College Hospital",
             type: "Government Multi-Specialty Hospital",
             distance: "4.1 km",
             phone: "+91 562 226 0353 / 108",
@@ -218,7 +344,7 @@ const APP_DATA = {
       name: "Red Fort (Lal Qila)",
       city: "Old Delhi",
       state: "Delhi",
-      category: "World Heritage",
+      category: "World Heritage & Fortress",
       rating: 4.7,
       reviewsCount: "95k+",
       safetyScore: 9.4,
@@ -230,6 +356,7 @@ const APP_DATA = {
         saarc: "₹35"
       },
       image: "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=900&q=80",
+      fallbackImage: "https://images.unsplash.com/photo-1598324789736-4861f89564a0?auto=format&fit=crop&w=900&q=80",
       gallery: [
         "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=900&q=80",
         "https://images.unsplash.com/photo-1598324789736-4861f89564a0?auto=format&fit=crop&w=900&q=80"
@@ -275,15 +402,6 @@ const APP_DATA = {
             pricePerNight: "₹11,000+",
             safetyVerified: true,
             contact: "+91 11 2326 1000"
-          },
-          {
-            name: "The Lalit New Delhi",
-            type: "5-Star Central Delhi",
-            distance: "3.8 km",
-            rating: 4.6,
-            pricePerNight: "₹9,500+",
-            safetyVerified: true,
-            contact: "+91 11 4444 7777"
           }
         ],
         transport: [
@@ -293,13 +411,6 @@ const APP_DATA = {
             detail: "Exit Gate 4 is 150m from the Red Fort ticket counter.",
             fare: "₹10 - ₹40 (Smart Card / DMRC App)",
             tip: "Air-conditioned, CCTV secured with dedicated ladies coaches."
-          },
-          {
-            type: "Prepaid E-Rickshaw",
-            name: "Chandni Chowk E-Rickshaw Stand",
-            detail: "Electric green rickshaws for short hops to Jama Masjid and Metro.",
-            fare: "₹20 - ₹30 fixed per seat",
-            tip: "Agree on price per person before sitting."
           }
         ],
         entertainment: [
@@ -310,14 +421,6 @@ const APP_DATA = {
             timing: "7:00 PM (Hindi) & 8:30 PM (English)",
             rating: 4.7,
             highlight: "Narrated by Amitabh Bachchan, covering 500 years of India's freedom struggle."
-          },
-          {
-            name: "Chandni Chowk Heritage Rickshaw Walk",
-            type: "Spice Market (Khari Baoli) Tour",
-            distance: "800 m",
-            timing: "10:00 AM - 7:00 PM",
-            rating: 4.8,
-            highlight: "Asia's largest spice market with breathtaking aromas and vibrant culture."
           }
         ],
         emergency: [
@@ -346,7 +449,7 @@ const APP_DATA = {
       name: "Qutub Minar",
       city: "South Delhi",
       state: "Delhi",
-      category: "World Heritage",
+      category: "World Heritage & Tower",
       rating: 4.8,
       reviewsCount: "82k+",
       safetyScore: 9.7,
@@ -357,10 +460,10 @@ const APP_DATA = {
         foreigner: "₹550 (Online) / ₹600 (Counter)",
         saarc: "₹35"
       },
-      image: "https://images.unsplash.com/photo-1597042034842-83214b7865bd?auto=format&fit=crop&w=900&q=80",
+      image: "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=900&q=80",
+      fallbackImage: "https://images.unsplash.com/photo-1585135497273-1a86b09fe70e?auto=format&fit=crop&w=900&q=80",
       gallery: [
-        "https://images.unsplash.com/photo-1597042034842-83214b7865bd?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=900&q=80"
+        "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=900&q=80"
       ],
       snippet: "At 72.5 meters tall, the world's tallest brick minaret, surrounded by ancient ruins of Quwwat-ul-Islam Mosque and the rust-resistant 4th-century Iron Pillar.",
       history: "Construction started by Qutb-ud-din Aibak in 1199 and completed by his son-in-law Shams-ud-din Iltutmish. Firoz Shah Tughlaq added the upper marble storeys after lightning damage in 1368.",
@@ -381,16 +484,6 @@ const APP_DATA = {
             safetyVerified: true,
             address: "One Style Mile, Mehrauli",
             mustTry: "Wood-fired Pizza & Mezze Platter"
-          },
-          {
-            name: "Rooh New Delhi",
-            cuisine: "Progressive Indian Restaurant",
-            distance: "450 m",
-            rating: 4.6,
-            price: "₹₹₹",
-            safetyVerified: true,
-            address: "Ambawatta One, Mehrauli",
-            mustTry: "Duck Shami & Butter Chicken Kulcha"
           }
         ],
         hotels: [
@@ -449,7 +542,7 @@ const APP_DATA = {
       name: "Hawa Mahal (Palace of Winds)",
       city: "Jaipur",
       state: "Rajasthan",
-      category: "Heritage Monument",
+      category: "Heritage Palace & Facade",
       rating: 4.7,
       reviewsCount: "67k+",
       safetyScore: 9.5,
@@ -461,9 +554,9 @@ const APP_DATA = {
         compositeTicket: "₹300 (Includes Amber Fort, Albert Hall, Jantar Mantar)"
       },
       image: "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=900&q=80",
+      fallbackImage: "https://images.unsplash.com/photo-1603287681836-e174ce7176c2?auto=format&fit=crop&w=900&q=80",
       gallery: [
-        "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1603287681836-e174ce7176c2?auto=format&fit=crop&w=900&q=80"
+        "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=900&q=80"
       ],
       snippet: "A five-storey pink and red sandstone palace featuring 953 intricately carved jharokhas (small windows) built in 1799 by Maharaja Sawai Pratap Singh.",
       history: "Constructed so that the royal women could observe everyday street festivals and processions without being observed by the public, adhering to the purdah custom.",
@@ -484,16 +577,6 @@ const APP_DATA = {
             safetyVerified: true,
             address: "3rd Floor, Badi Chaupar",
             mustTry: "Masala Chai & Wood-fired Pizza with direct view"
-          },
-          {
-            name: "LMB (Laxmi Misthan Bhandar)",
-            cuisine: "Authentic Rajasthani Sweets & Thali",
-            distance: "600 m (Johari Bazaar)",
-            rating: 4.5,
-            price: "₹₹",
-            safetyVerified: true,
-            address: "Johari Bazaar, Jaipur",
-            mustTry: "Rajasthani Dal Baati Churma & Ghevar"
           }
         ],
         hotels: [
@@ -505,15 +588,6 @@ const APP_DATA = {
             pricePerNight: "₹16,000+",
             safetyVerified: true,
             contact: "+91 141 263 2407"
-          },
-          {
-            name: "Umaid Bhawan Heritage Hotel",
-            type: "Traditional Rajput Style Hotel",
-            distance: "4.2 km",
-            rating: 4.6,
-            pricePerNight: "₹4,200+",
-            safetyVerified: true,
-            contact: "+91 141 231 6184"
           }
         ],
         transport: [
@@ -523,13 +597,6 @@ const APP_DATA = {
             detail: "Underground station just 120m from Hawa Mahal.",
             fare: "₹6 - ₹18",
             tip: "Connects directly to Jaipur Railway Station & Sindhi Camp Bus Stand."
-          },
-          {
-            type: "Jaipur Smart Auto Service",
-            name: "Government Fixed Tariff Stand",
-            detail: "QR Code safety enabled auto stand at Badi Chaupar.",
-            fare: "₹50 - ₹120 for local sights",
-            tip: "Scan QR code inside auto for live route tracking."
           }
         ],
         entertainment: [
@@ -580,9 +647,9 @@ const APP_DATA = {
         elephantaFerry: "₹260 return"
       },
       image: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=900&q=80",
+      fallbackImage: "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?auto=format&fit=crop&w=900&q=80",
       gallery: [
-        "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?auto=format&fit=crop&w=900&q=80"
+        "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=900&q=80"
       ],
       snippet: "An imposing 26-meter arch monument overlooking the Arabian Sea, erected to commemorate the 1911 landing of King George V and Queen Mary.",
       history: "Designed by Scottish architect George Wittet in Indo-Saracenic style with yellow basalt stone. It was also the ceremonial departure point for the last British troops leaving India in 1948.",
@@ -603,16 +670,6 @@ const APP_DATA = {
             safetyVerified: true,
             address: "Colaba Causeway, Mumbai",
             mustTry: "Chilli Chicken & Cold Draught Brew"
-          },
-          {
-            name: "Bademiya",
-            cuisine: "Legendary Late-night Kebabs & Rolls",
-            distance: "300 m",
-            rating: 4.4,
-            price: "₹₹",
-            safetyVerified: true,
-            address: "Tulloch Road, Behind Taj Hotel",
-            mustTry: "Mutton Seekh Kebab & Baida Roti"
           }
         ],
         hotels: [
@@ -633,13 +690,6 @@ const APP_DATA = {
             detail: "Mumbai taxis run on calibrated digital meters. Minimum fare is ₹28.",
             fare: "₹28 base + ₹18.66/km",
             tip: "Always ask driver to 'Meter down' upon entering."
-          },
-          {
-            type: "Elephanta Island Ferry",
-            name: "MTDC Authorized Jetty 1-5",
-            detail: "Scenic 1-hour cruise across Mumbai Harbour to cave temples.",
-            fare: "₹260 Economy / ₹280 Luxury Upper Deck",
-            tip: "Ferries operate every 30 mins from 9:00 AM to 3:30 PM (Closed Mondays)."
           }
         ],
         entertainment: [
@@ -690,6 +740,7 @@ const APP_DATA = {
         camera: "Phones kept at electronic locker counter"
       },
       image: "https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=900&q=80",
+      fallbackImage: "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=900&q=80",
       gallery: [
         "https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=900&q=80"
       ],
@@ -763,6 +814,385 @@ const APP_DATA = {
           }
         ]
       }
+    },
+
+    // ----------------------------------------------------
+    // RECOMMENDED GEMS AS FULL RICH PLACES
+    // ----------------------------------------------------
+    {
+      id: "sikkim-gangtok",
+      name: "Gangtok & Tsomgo Lake",
+      city: "Gangtok",
+      state: "Sikkim",
+      category: "Eco-Reserve & High-Altitude Glacial Lake",
+      rating: 4.9,
+      reviewsCount: "42k+",
+      safetyScore: 9.9,
+      safetyBadge: "100% Organic & Safest State",
+      entryTimings: "Open 6:00 AM - 5:00 PM (Permit required for Tsomgo)",
+      entryFee: {
+        indian: "₹200 (Protected Area Permit)",
+        foreigner: "₹500 (RAP / PAP via registered travel agent)",
+        cableCar: "₹350 (Gangtok Ropeway)"
+      },
+      image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=900&q=80",
+      fallbackImage: "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=900&q=80",
+      gallery: [
+        "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=900&q=80"
+      ],
+      snippet: "Surrounded by snow-capped Himalayan peaks, Sikkim offers pristine high-altitude glacial lakes, Tibetan Buddhist monasteries, and zero plastic litter.",
+      history: "Gangtok rose to prominence in the mid-19th century as a key transit node along the ancient Silk Route between Tibet and British India. Sikkim became India's 22nd state in 1975.",
+      architecture: "Tibetan and traditional Sikkimese wooden pagoda monasteries featuring colorful prayer wheels, gold stupas, and hand-painted thangkas.",
+      dosAndDonts: [
+        { type: "do", text: "Obtain Protected Area Permit (PAP) for Tsomgo Lake & Nathula Pass 1 day in advance with photo ID." },
+        { type: "do", text: "Walk along MG Marg, India's first fully pedestrianized and litter-free city promenade." },
+        { type: "dont", text: "Do not carry single-use plastic water bottles (Sikkim strictly enforces organic green laws)." },
+        { type: "dont", text: "Do not photograph military installations near Nathula Indo-China border." }
+      ],
+      nearbyAmenities: {
+        restaurants: [
+          {
+            name: "The Square Restaurant",
+            cuisine: "Authentic Sikkimese Thali, Momos & Thukpa",
+            distance: "100 m (MG Marg)",
+            rating: 4.8,
+            price: "₹₹",
+            safetyVerified: true,
+            address: "MG Marg, Gangtok",
+            mustTry: "Kothey Momos & Gundruk Soup"
+          }
+        ],
+        hotels: [
+          {
+            name: "Mayfair Spa Resort & Casino",
+            type: "5-Star Luxury Mountain Resort",
+            distance: "5.5 km",
+            rating: 4.9,
+            pricePerNight: "₹14,500+",
+            safetyVerified: true,
+            contact: "+91 3592 250 100"
+          }
+        ],
+        transport: [
+          {
+            type: "Sikkim Shared Taxi Stand",
+            name: "Deorali Taxi Stand & Gangtok Ropeway",
+            detail: "Fixed government rate shared Boleros/Sumos for Tsomgo Lake & Baba Mandir.",
+            fare: "₹800 - ₹1,200 per passenger (including permit)",
+            tip: "Start early by 7:30 AM to beat afternoon cloud fog."
+          }
+        ],
+        entertainment: [
+          {
+            name: "Rumtek Monastery & Valley Walk",
+            type: "Spiritual Buddhist Center",
+            distance: "23 km",
+            timing: "6:00 AM - 6:00 PM",
+            rating: 4.9,
+            highlight: "Dharmachakra Center of the Kagyu sect with sacred golden stupas and panoramic green valley views."
+          }
+        ],
+        emergency: [
+          {
+            name: "Sikkim Tourist Police Helpdesk",
+            type: "Tourist Police Assistance",
+            distance: "150 m (Tourism Department Office)",
+            phone: "+91 3592 202 022 / 112",
+            available: "24x7",
+            action: "Police Assistance"
+          },
+          {
+            name: "STNM Multi-Speciality Hospital",
+            type: "Premier Government Hospital",
+            distance: "3.5 km",
+            phone: "+91 3592 202 944 / 108",
+            available: "24x7 Emergency",
+            action: "Medical Care"
+          }
+        ]
+      }
+    },
+
+    {
+      id: "jharkhand-betla",
+      name: "Betla National Park & Netarhat",
+      city: "Latehar / Palamu",
+      state: "Jharkhand",
+      category: "Eco-Wildlife Reserve & 16th-Century Chero Forts",
+      rating: 4.6,
+      reviewsCount: "18k+",
+      safetyScore: 9.4,
+      safetyBadge: "Verified Offbeat Gem",
+      entryTimings: "6:00 AM - 10:30 AM & 2:00 PM - 5:30 PM (Safari)",
+      entryFee: {
+        indian: "₹100 (Park Entry) + ₹400 (Jeep Safari)",
+        foreigner: "₹500 (Park Entry) + ₹1,000 (Safari)",
+        guide: "₹200 mandatory trained forest guide"
+      },
+      image: "https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=900&q=80",
+      fallbackImage: "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=900&q=80",
+      gallery: [
+        "https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=900&q=80"
+      ],
+      snippet: "One of India's first tiger reserves, featuring wild elephants, dense sal forests, 16th-century Chero dynasty brick forts, and Netarhat's 'Queen of Chotanagpur' sunsets.",
+      history: "Betla was declared a National Park in 1986 under Project Tiger. Deep inside the sanctuary stand the twin forts built by the Chero rulers Raja Medini Ray and Raja Pratap Ray in the 16th century.",
+      architecture: "Mughal and indigenous tribal brick fortification with fortified ramparts, hidden escape tunnels, and decorative arched gates.",
+      dosAndDonts: [
+        { type: "do", text: "Book an early morning Elephant Safari or Jeep Safari with verified forest department guides." },
+        { type: "do", text: "Drive up to Netarhat Sunset Point & Magnolia Point for breathtaking red horizon views." },
+        { type: "dont", text: "Do not alight from safari vehicles inside dense core wildlife zones." },
+        { type: "dont", text: "Avoid night driving on unlit forest roads without local verified drivers." }
+      ],
+      nearbyAmenities: {
+        restaurants: [
+          {
+            name: "Van Vihar Forest Canteen",
+            cuisine: "Traditional Jharkhandi Thali, Dhuska & Litti Chokha",
+            distance: "100 m (Park Gate)",
+            rating: 4.5,
+            price: "₹",
+            safetyVerified: true,
+            address: "Betla Forest Complex",
+            mustTry: "Dhuska with Ghugni & Sattu Litti"
+          }
+        ],
+        hotels: [
+          {
+            name: "JTDC Van Vihar Eco Tourist Lodge",
+            type: "Government Eco Lodge inside Sanctuary",
+            distance: "50 m",
+            rating: 4.4,
+            pricePerNight: "₹1,800 - ₹3,500",
+            safetyVerified: true,
+            contact: "+91 6562 222 100"
+          }
+        ],
+        transport: [
+          {
+            type: "Forest Department Gypsys",
+            name: "Authorized Wildlife Safari Stand",
+            detail: "Open-top 4x4 Gypsys with registered drivers for jungle tracking.",
+            fare: "₹1,200 per vehicle (up to 6 persons)",
+            tip: "Carry binoculars and ID cards for entry register."
+          }
+        ],
+        entertainment: [
+          {
+            name: "Lodh Falls & Magnolia Sunset Point",
+            type: "Highest Waterfall in Jharkhand",
+            distance: "38 km",
+            timing: "8:00 AM - 5:00 PM",
+            rating: 4.8,
+            highlight: "143-meter cascading multi-tiered waterfall nestled inside untouched sal forest valleys."
+          }
+        ],
+        emergency: [
+          {
+            name: "Betla Police Station & Forest Cell",
+            type: "Local Police Post",
+            distance: "200 m",
+            phone: "+91 6562 222 100 / 112",
+            available: "24x7",
+            action: "Police Help"
+          },
+          {
+            name: "Latehar Community Health Center",
+            type: "Government Health Center",
+            distance: "16 km",
+            phone: "+91 6565 222 222 / 108",
+            available: "24x7 Emergency",
+            action: "Medical Care"
+          }
+        ]
+      }
+    },
+
+    {
+      id: "kerala-munnar",
+      name: "Munnar Tea Valleys & Eravikulam",
+      city: "Munnar (Idukki)",
+      state: "Kerala",
+      category: "Western Ghats Eco-Reserve & Tea Plantations",
+      rating: 4.9,
+      reviewsCount: "64k+",
+      safetyScore: 9.8,
+      safetyBadge: "Kerala God's Own Safety Corridor",
+      entryTimings: "7:30 AM - 4:00 PM (Eravikulam National Park)",
+      entryFee: {
+        indian: "₹200 (Includes Safari Bus)",
+        foreigner: "₹500",
+        teaMuseum: "₹125 (KDHP Tea Museum)"
+      },
+      image: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=900&q=80",
+      fallbackImage: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=900&q=80",
+      gallery: [
+        "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=900&q=80"
+      ],
+      snippet: "Rolling carpet of emerald green tea plantations at 1,600 meters elevation, home to the endangered Nilgiri Tahr mountain goat and Anamudi Peak.",
+      history: "Developed by British planters in the late 19th century under the High Range Tea Association, establishing the highest tea estates in the world.",
+      architecture: "Colonial British stone bungalows, high-ceilinged tea processing factories, and rustic wood-and-tile plantations.",
+      dosAndDonts: [
+        { type: "do", text: "Book Eravikulam National Park safari bus tickets online via the Kerala Forest website." },
+        { type: "do", text: "Sample fresh handpicked CTC and green teas at the KDHP Ripple Tea Lounge." },
+        { type: "dont", text: "Do not attempt off-road hiking in elephant corridors without forest department authorization." },
+        { type: "dont", text: "Do not feed wild Nilgiri Tahr goats along the Anamudi viewpoint trail." }
+      ],
+      nearbyAmenities: {
+        restaurants: [
+          {
+            name: "Rapsy Restaurant Munnar",
+            cuisine: "Authentic Kerala Parotta, Fish Curry & Beef/Chicken Fry",
+            distance: "300 m (Main Bazaar)",
+            rating: 4.6,
+            price: "₹",
+            safetyVerified: true,
+            address: "Main Bazaar, Munnar",
+            mustTry: "Malabar Kerala Parotta & Cardamom Tea"
+          }
+        ],
+        hotels: [
+          {
+            name: "Blanket Luxury Villa & Spa",
+            type: "5-Star Luxury Resort (Facing Attukad Falls)",
+            distance: "6.2 km",
+            rating: 4.9,
+            pricePerNight: "₹12,000+",
+            safetyVerified: true,
+            contact: "+91 4865 263 444"
+          }
+        ],
+        transport: [
+          {
+            type: "Munnar Auto Stand (Green Corridor)",
+            name: "Government Fixed Tariff Stand",
+            detail: "Polite local drivers operating on regulated hill tariffs.",
+            fare: "₹40 - ₹80 for local spots",
+            tip: "Fixed rates to Mattupetty Dam and Tea Museum."
+          }
+        ],
+        entertainment: [
+          {
+            name: "Punarjani Traditional Village",
+            type: "Kathakali & Kalaripayattu Martial Arts",
+            distance: "8.2 km",
+            timing: "5:00 PM & 6:00 PM daily",
+            rating: 4.8,
+            highlight: "Ancient Kerala 3,000-year-old martial arts and classical mime dance theater."
+          }
+        ],
+        emergency: [
+          {
+            name: "Munnar Police Station (Tourist Unit)",
+            type: "Kerala Tourist Police Post",
+            distance: "500 m",
+            phone: "+91 4865 230 321 / 112",
+            available: "24x7",
+            action: "Police Assistance"
+          },
+          {
+            name: "Tata General Hospital Munnar",
+            type: "Multi-Speciality Hospital",
+            distance: "1.8 km",
+            phone: "+91 4865 230 227 / 108",
+            available: "24x7 Emergency",
+            action: "Medical Care"
+          }
+        ]
+      }
+    },
+
+    {
+      id: "rajasthan-udaipur",
+      name: "Lake Pichola & City Palace",
+      city: "Udaipur",
+      state: "Rajasthan",
+      category: "Mewar Royal Palace & Historic Lake",
+      rating: 4.8,
+      reviewsCount: "78k+",
+      safetyScore: 9.7,
+      safetyBadge: "Verified Royal Safe Zone",
+      entryTimings: "9:30 AM - 5:30 PM Daily",
+      entryFee: {
+        indian: "₹300 (Palace Museum)",
+        foreigner: "₹300",
+        boatRide: "₹450 - ₹800 (Sunset Lake Pichola Cruise)"
+      },
+      image: "https://images.unsplash.com/photo-1615836245337-f5b9b2303f10?auto=format&fit=crop&w=900&q=80",
+      fallbackImage: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=900&q=80",
+      gallery: [
+        "https://images.unsplash.com/photo-1615836245337-f5b9b2303f10?auto=format&fit=crop&w=900&q=80"
+      ],
+      snippet: "The romantic 'City of Lakes' featuring illuminated marble floating palaces, intricate Mewar mirror mosaics, and tranquil sunset boat cruises.",
+      history: "Founded in 1559 by Maharana Udai Singh II as the new capital of the Mewar Kingdom following the siege of Chittorgarh. The City Palace was built over a span of nearly 400 years.",
+      architecture: "Blend of Rajasthani Rajput and Mughal architectural styles built on a crest overlooking Lake Pichola with balconies, cupolas, and towers.",
+      dosAndDonts: [
+        { type: "do", text: "Take the government-approved boat ride from Rameshwar Ghat to Jagmandir Island." },
+        { type: "do", text: "Watch the Mewar Sound & Light show (The Legacy of Honour) at Manek Chowk in the evening." },
+        { type: "dont", text: "Do not fall for unlicensed miniature painting gallery traps disguised as 'schools for orphans'." },
+        { type: "dont", text: "Avoid swimming in the lake outside demarcated public bathing ghats." }
+      ],
+      nearbyAmenities: {
+        restaurants: [
+          {
+            name: "Ambrai - Amet Haveli",
+            cuisine: "Fine Dining Rajasthani (Waterfront Lake Views)",
+            distance: "600 m (Directly facing City Palace)",
+            rating: 4.8,
+            price: "₹₹₹",
+            safetyVerified: true,
+            address: "Naga Nagri, Outside Chandpole",
+            mustTry: "Laal Maas & Mewari Paneer"
+          }
+        ],
+        hotels: [
+          {
+            name: "Taj Lake Palace Udaipur",
+            type: "Iconic Floating Marble Luxury Hotel",
+            distance: "In Lake Pichola (Boat Transfer)",
+            rating: 4.9,
+            pricePerNight: "₹34,000+",
+            safetyVerified: true,
+            contact: "+91 294 246 0101"
+          }
+        ],
+        transport: [
+          {
+            type: "Udaipur Smart Auto Stand",
+            name: "Jagdish Chowk Prepaid Auto Post",
+            detail: "Authorized police tariff auto booth outside Jagdish Temple.",
+            fare: "₹50 - ₹120",
+            tip: "Autos are allowed inside the old city narrow lanes where taxis cannot enter."
+          }
+        ],
+        entertainment: [
+          {
+            name: "Bagore Ki Haveli Dharohar Dance",
+            type: "Traditional Folk Dance & Puppet Show",
+            distance: "250 m (Gangaur Ghat)",
+            timing: "7:00 PM - 8:00 PM Daily",
+            rating: 4.9,
+            highlight: "World-famous Chari and Bhavai dance featuring performers balancing 11 brass pots on their heads."
+          }
+        ],
+        emergency: [
+          {
+            name: "Ghantaghar Police Station",
+            type: "Old City Tourist Police Unit",
+            distance: "300 m",
+            phone: "+91 294 241 4600 / 112",
+            available: "24x7",
+            action: "Police Assistance"
+          },
+          {
+            name: "MB Government Hospital Udaipur",
+            type: "General Hospital Trauma Unit",
+            distance: "2.2 km",
+            phone: "+91 294 252 8811 / 108",
+            available: "24x7 Emergency",
+            action: "Medical Care"
+          }
+        ]
+      }
     }
   ],
 
@@ -773,11 +1203,10 @@ const APP_DATA = {
     { id: "rajasthan", name: "Rajasthan", icon: "🏰", tagline: "Royal Forts & Desert Safaris", safetyScore: 9.5, topPlaceId: "hawa-mahal" },
     { id: "maharashtra", name: "Maharashtra", icon: "🌊", tagline: "Gateway to Coastal & Island Forts", safetyScore: 9.6, topPlaceId: "gateway-of-india" },
     { id: "tamil-nadu", name: "Tamil Nadu", icon: "🛕", tagline: "Magnificent Dravidian Temples", safetyScore: 9.8, topPlaceId: "meenakshi-temple" },
-    { id: "goa", name: "Goa", icon: "🏖️", tagline: "Sun, Sea & Portuguese Heritage", safetyScore: 9.7, topPlaceId: "taj-mahal" },
-    { id: "kerala", name: "Kerala", icon: "🌴", tagline: "God's Own Country & Backwaters", safetyScore: 9.8, topPlaceId: "taj-mahal" },
-    { id: "himachal", name: "Himachal Pradesh", icon: "🏔️", tagline: "Snow Peaks & Valley Retreats", safetyScore: 9.8, topPlaceId: "taj-mahal" },
-    { id: "sikkim", name: "Sikkim", icon: "🦚", tagline: "Cleanest Himalayan Organic State", safetyScore: 9.9, topPlaceId: "taj-mahal" },
-    { id: "jharkhand", name: "Jharkhand", icon: "🌲", tagline: "Untouched Waterfalls & Tribal Culture", safetyScore: 9.4, topPlaceId: "taj-mahal" }
+    { id: "sikkim", name: "Sikkim", icon: "🦚", tagline: "Cleanest Himalayan Organic State", safetyScore: 9.9, topPlaceId: "sikkim-gangtok" },
+    { id: "jharkhand", name: "Jharkhand", icon: "🌲", tagline: "Untouched Waterfalls & Tribal Culture", safetyScore: 9.4, topPlaceId: "jharkhand-betla" },
+    { id: "kerala", name: "Kerala", icon: "🌴", tagline: "God's Own Country & Backwaters", safetyScore: 9.8, topPlaceId: "kerala-munnar" },
+    { id: "goa", name: "Goa", icon: "🏖️", tagline: "Sun, Sea & Portuguese Heritage", safetyScore: 9.7, topPlaceId: "taj-mahal" }
   ],
 
   // 3. Recommended Hidden Gems & Eco-Tourism
@@ -788,6 +1217,7 @@ const APP_DATA = {
       state: "Sikkim",
       region: "Northeast Himalayas",
       image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=700&q=80",
+      fallbackImage: "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=700&q=80",
       rating: 4.9,
       safetyScore: 9.9,
       badge: "Eco & Safe Choice",
@@ -799,7 +1229,8 @@ const APP_DATA = {
       name: "Betla National Park & Netarhat",
       state: "Jharkhand",
       region: "Chota Nagpur Plateau",
-      image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=700&q=80",
+      image: "https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=700&q=80",
+      fallbackImage: "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=700&q=80",
       rating: 4.6,
       safetyScore: 9.4,
       badge: "Offbeat Gem",
@@ -812,6 +1243,7 @@ const APP_DATA = {
       state: "Kerala",
       region: "Western Ghats",
       image: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=700&q=80",
+      fallbackImage: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=700&q=80",
       rating: 4.9,
       safetyScore: 9.8,
       badge: "Wellness & Nature",
@@ -824,6 +1256,7 @@ const APP_DATA = {
       state: "Rajasthan",
       region: "Mewar",
       image: "https://images.unsplash.com/photo-1615836245337-f5b9b2303f10?auto=format&fit=crop&w=700&q=80",
+      fallbackImage: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=700&q=80",
       rating: 4.8,
       safetyScore: 9.7,
       badge: "Romantic City",

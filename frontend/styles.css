@@ -1,9 +1,9 @@
 /* ===================================================================
-   Vamos Bharat - Desktop Design System & Custom Styles
+   Vamos Bharat - Enhanced Modern Design System & Custom Styles
    Smart India Hackathon Prototype: Tourism & Tourist Safety Platform
    =================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap');
 
 :root {
   --bg-primary: #F8FAFC;
@@ -15,6 +15,8 @@
   --emergency-red-hover: #DC2626;
   --surface-card: #FFFFFF;
   --surface-border: #E2E8F0;
+  --saffron-orange: #FF7722;
+  --emerald-safe: #10B981;
 }
 
 body {
@@ -25,8 +27,34 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1, h2, h3, .font-heading {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  letter-spacing: -0.02em;
+}
+
 .font-hindi {
   font-family: 'Noto Sans Devanagari', 'Inter', sans-serif;
+}
+
+/* Ensure hidden views are strictly non-rendered */
+.app-view.hidden {
+  display: none !important;
+}
+
+.app-view.view-active {
+  display: block;
+  animation: fadeInView 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInView {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Custom Scrollbars */
@@ -56,29 +84,13 @@ body {
   scrollbar-width: none;
 }
 
-/* View Transitions */
-.app-view {
-  animation: fadeInView 0.25s ease-out forwards;
-}
-
-@keyframes fadeInView {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 /* Floating / Header SOS Glowing Pulse Animation */
 @keyframes sosGlow {
   0% {
-    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
   }
   70% {
-    box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+    box-shadow: 0 0 0 12px rgba(239, 68, 68, 0);
   }
   100% {
     box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
@@ -86,7 +98,7 @@ body {
 }
 
 .sos-glow-button {
-  animation: sosGlow 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+  animation: sosGlow 2.2s infinite cubic-bezier(0.4, 0, 0.6, 1);
 }
 
 /* Siren Strobe Animation */
@@ -95,7 +107,7 @@ body {
     background-color: #EF4444;
   }
   50% {
-    background-color: #3B82F6;
+    background-color: #2563EB;
   }
 }
 
@@ -103,11 +115,11 @@ body {
   animation: sirenFlash 0.6s infinite;
 }
 
-/* Glassmorphism Utilities */
+/* Glassmorphism Header */
 .glass-header {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 /* Line Clamp Utilities */
@@ -134,15 +146,46 @@ body {
 
 /* Monument Card Hover Transition */
 .monument-desktop-card {
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .monument-desktop-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.1), 0 4px 10px -2px rgba(0, 0, 0, 0.05);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 35px -10px rgba(15, 23, 42, 0.12), 0 8px 16px -4px rgba(37, 99, 235, 0.08);
 }
 
-/* Hero Background Pattern */
+/* Rich Hero Gradient Background */
 .hero-gradient-bg {
-  background: linear-gradient(135deg, #1E40AF 0%, #1D4ED8 50%, #3B82F6 100%);
+  background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 45%, #2563EB 85%, #3B82F6 100%);
+  position: relative;
+}
+
+.hero-gradient-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at top right, rgba(255, 153, 51, 0.15), transparent 50%),
+              radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.15), transparent 50%);
+  pointer-events: none;
+}
+
+/* Badge pulse */
+.pulse-emerald {
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: pulseEmerald 2s infinite;
+}
+
+@keyframes pulseEmerald {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
 }

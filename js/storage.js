@@ -1,5 +1,5 @@
 /**
- * Vamos Bharat - LocalStorage State Management
+ * Vamos Bharat - LocalStorage State Management & Location Persistence
  */
 
 const STORAGE_KEYS = {
@@ -8,10 +8,45 @@ const STORAGE_KEYS = {
   EMERGENCY_CONTACTS: "ys_emergency_contacts",
   CHAT_HISTORY: "ys_chat_history",
   APP_LANGUAGE: "ys_language",
-  ONBOARDING_DONE: "ys_onboarded"
+  ONBOARDING_DONE: "ys_onboarded",
+  ACTIVE_LOCATION: "ys_active_location"
 };
 
 const StorageManager = {
+  // Active Manual Location
+  getCurrentLocation() {
+    try {
+      const data = localStorage.getItem(STORAGE_KEYS.ACTIVE_LOCATION);
+      if (data) return JSON.parse(data);
+    } catch (e) {
+      console.error("Error reading saved location:", e);
+    }
+    return window.APP_DATA ? window.APP_DATA.currentLocation : {
+      city: "New Delhi",
+      state: "Delhi",
+      lat: 28.6139,
+      lng: 77.2090,
+      landmark: "Connaught Place, Central Delhi",
+      safetyIndex: "9.5/10",
+      safetyZone: "Low Risk Tourist Corridor",
+      safetyColor: "emerald"
+    };
+  },
+
+  setCurrentLocation(locObj) {
+    try {
+      localStorage.setItem(STORAGE_KEYS.ACTIVE_LOCATION, JSON.stringify(locObj));
+      if (window.APP_DATA) {
+        window.APP_DATA.currentLocation = locObj;
+      }
+      window.dispatchEvent(new CustomEvent("location-changed", { detail: locObj }));
+      return locObj;
+    } catch (e) {
+      console.error("Error saving manual location:", e);
+      return null;
+    }
+  },
+
   // Wishlist / Bookmarks
   getWishlist() {
     try {

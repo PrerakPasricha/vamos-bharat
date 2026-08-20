@@ -1,5 +1,5 @@
 /**
- * Vamos Bharat - Emergency SOS & Rapid Dispatch System
+ * Vamos Bharat - Emergency SOS & Rapid Dispatch System (Manual Location Aware)
  */
 
 const SOSSystem = {
@@ -13,6 +13,11 @@ const SOSSystem = {
   init() {
     this.modal = document.getElementById("sos-modal");
     this.bindEvents();
+
+    // Listen for manual location change events
+    window.addEventListener("location-changed", () => {
+      this.updateGPSReadout();
+    });
   },
 
   bindEvents() {
@@ -77,18 +82,18 @@ const SOSSystem = {
   },
 
   updateGPSReadout() {
-    const loc = window.APP_DATA ? window.APP_DATA.currentLocation : {
+    const loc = window.StorageManager ? window.StorageManager.getCurrentLocation() : (window.APP_DATA ? window.APP_DATA.currentLocation : {
       lat: 28.6139,
       lng: 77.2090,
       city: "New Delhi",
       landmark: "Connaught Place, Central Delhi"
-    };
+    });
 
     const gpsElem = document.getElementById("sos-gps-coords");
     const addressElem = document.getElementById("sos-gps-address");
 
-    if (gpsElem) gpsElem.innerText = `${loc.lat.toFixed(4)}° N, ${loc.lng.toFixed(4)}° E (± 4m accuracy)`;
-    if (addressElem) addressElem.innerText = `${loc.landmark}, ${loc.city}`;
+    if (gpsElem) gpsElem.innerText = `${loc.lat.toFixed(4)}° N, ${loc.lng.toFixed(4)}° E (± 4m precision)`;
+    if (addressElem) addressElem.innerText = `${loc.landmark}, ${loc.city} (${loc.state || ''})`;
   },
 
   confirmEmergencyCall(number, serviceName) {
@@ -188,13 +193,13 @@ const SOSSystem = {
   },
 
   dispatchOfflineSMS() {
-    const loc = window.APP_DATA ? window.APP_DATA.currentLocation : { lat: 28.6139, lng: 77.2090, city: "Delhi", landmark: "Connaught Place" };
+    const loc = window.StorageManager ? window.StorageManager.getCurrentLocation() : (window.APP_DATA ? window.APP_DATA.currentLocation : { lat: 28.6139, lng: 77.2090, city: "Delhi", landmark: "Connaught Place" });
     const user = window.StorageManager ? window.StorageManager.getUserProfile() : { name: "Traveler", emergencyContactPhone: "112" };
 
     const mapLink = `https://maps.google.com/?q=${loc.lat},${loc.lng}`;
     const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     
-    const messageBody = `[EMERGENCY SOS] Tourist Safety Alert from ${user.name} at ${timestamp}! I need urgent assistance at: ${loc.landmark}, ${loc.city}. Live GPS: ${mapLink} (Coordinates: ${loc.lat.toFixed(4)}, ${loc.lng.toFixed(4)})`;
+    const messageBody = `[EMERGENCY SOS] Tourist Safety Alert from ${user.name} at ${timestamp}! I need urgent assistance at: ${loc.landmark}, ${loc.city} (${loc.state || ''}). Manual GPS: ${mapLink} (Coordinates: ${loc.lat.toFixed(4)}, ${loc.lng.toFixed(4)})`;
 
     // Attempt native sms protocol
     const cleanPhone = (user.emergencyContactPhone || "112").replace(/[^\d+]/g, "");
