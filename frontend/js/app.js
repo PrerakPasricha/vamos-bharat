@@ -211,7 +211,12 @@ const App = {
     const loc = locationObj || (window.StorageManager ? window.StorageManager.getCurrentLocation() : window.APP_DATA.currentLocation);
     const badge = document.getElementById("header-location-badge-text");
     if (badge && loc) {
-      badge.innerText = `📍 ${loc.city} · ${loc.safetyZone || 'Safe Zone'}`;
+      badge.innerText = `📍 ${loc.city}`;
+    }
+
+    const heroLoc = document.getElementById("hero-safety-location-text");
+    if (heroLoc && loc) {
+      heroLoc.innerText = `${loc.city} · ${loc.safetyZone || 'Low Risk Corridor'}`;
     }
 
     const profileCity = document.getElementById("profile-active-city");
@@ -224,7 +229,50 @@ const App = {
     const profile = window.StorageManager ? window.StorageManager.getUserProfile() : { name: "Alex Morgan" };
     const greetingElem = document.getElementById("header-user-greeting");
     if (greetingElem) {
-      greetingElem.innerText = profile.name;
+      greetingElem.innerText = profile.name || "Alex Morgan";
+    }
+
+    const initials = (profile.name || "Alex Morgan")
+      .split(" ")
+      .map(n => n[0])
+      .join("")
+      .substring(0, 2)
+      .toUpperCase();
+
+    const avatarImg = document.getElementById("header-profile-avatar-img");
+    const avatarFallback = document.getElementById("header-profile-avatar-fallback");
+
+    if (avatarImg) {
+      if (profile.avatar) {
+        avatarImg.src = profile.avatar;
+        avatarImg.classList.remove("hidden");
+        if (avatarFallback) avatarFallback.classList.add("hidden");
+      }
+      avatarImg.onerror = () => {
+        avatarImg.classList.add("hidden");
+        if (avatarFallback) {
+          avatarFallback.classList.remove("hidden");
+          avatarFallback.innerText = initials;
+        }
+      };
+    }
+
+    const badgeAvatarImg = document.getElementById("profile-badge-avatar-img");
+    const badgeAvatarFallback = document.getElementById("profile-badge-avatar-fallback");
+
+    if (badgeAvatarImg) {
+      if (profile.avatar) {
+        badgeAvatarImg.src = profile.avatar;
+        badgeAvatarImg.classList.remove("hidden");
+        if (badgeAvatarFallback) badgeAvatarFallback.classList.add("hidden");
+      }
+      badgeAvatarImg.onerror = () => {
+        badgeAvatarImg.classList.add("hidden");
+        if (badgeAvatarFallback) {
+          badgeAvatarFallback.classList.remove("hidden");
+          badgeAvatarFallback.innerText = initials;
+        }
+      };
     }
   },
 

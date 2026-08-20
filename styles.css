@@ -25,9 +25,10 @@ body {
   color: var(--text-heading);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-h1, h2, h3, .font-heading {
+h1, h2, h3, h4, .font-heading {
   font-family: 'Outfit', 'Inter', sans-serif;
   letter-spacing: -0.02em;
 }
@@ -43,7 +44,7 @@ h1, h2, h3, .font-heading {
 
 .app-view.view-active {
   display: block;
-  animation: fadeInView 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeInView 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes fadeInView {
@@ -122,6 +123,26 @@ h1, h2, h3, .font-heading {
   -webkit-backdrop-filter: blur(16px);
 }
 
+/* Profile Chip Interactive Styles */
+.header-profile-chip {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.header-profile-chip:hover {
+  background-color: #F1F5F9;
+  border-color: #93C5FD;
+}
+
+.header-profile-chip.is-active-view {
+  background-color: #EFF6FF !important;
+  border-color: #3B82F6 !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.35) !important;
+}
+
+.header-profile-chip.is-active-view span#header-user-greeting {
+  color: #1D4ED8 !important;
+}
+
 /* Line Clamp Utilities */
 .line-clamp-1 {
   display: -webkit-box;
@@ -150,13 +171,13 @@ h1, h2, h3, .font-heading {
 }
 
 .monument-desktop-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
   box-shadow: 0 20px 35px -10px rgba(15, 23, 42, 0.12), 0 8px 16px -4px rgba(37, 99, 235, 0.08);
 }
 
 /* Rich Hero Gradient Background */
 .hero-gradient-bg {
-  background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 45%, #2563EB 85%, #3B82F6 100%);
+  background: linear-gradient(135deg, #0B132B 0%, #1C2541 40%, #1E3A8A 80%, #2563EB 100%);
   position: relative;
 }
 
@@ -167,8 +188,8 @@ h1, h2, h3, .font-heading {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at top right, rgba(255, 153, 51, 0.15), transparent 50%),
-              radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.15), transparent 50%);
+  background: radial-gradient(circle at top right, rgba(249, 115, 22, 0.2), transparent 50%),
+              radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.18), transparent 50%);
   pointer-events: none;
 }
 

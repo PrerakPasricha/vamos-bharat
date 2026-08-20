@@ -57,81 +57,82 @@
   <!-- 1. RESPONSIVE DESKTOP & TABLET TOP NAV     -->
   <!-- ========================================== -->
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-xs">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20 gap-4 sm:gap-6">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20 gap-2 sm:gap-4">
         
         <!-- Left: Brand Logo -->
-        <div class="flex items-center gap-3 cursor-pointer flex-shrink-0" onclick="window.Router.navigateTo('home-view')">
-          <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-tr from-blue-700 via-indigo-600 to-blue-500 p-0.5 shadow-md shadow-blue-600/20 flex items-center justify-center text-white text-xl sm:text-2xl font-bold flex-shrink-0">
+        <div class="flex items-center gap-2.5 sm:gap-3 cursor-pointer flex-shrink-0" onclick="window.Router.navigateTo('home-view')">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-tr from-blue-700 via-indigo-600 to-blue-500 p-0.5 shadow-md shadow-blue-600/25 flex items-center justify-center text-white text-xl sm:text-2xl font-bold flex-shrink-0">
             🛡️
           </div>
           <div>
-            <div class="flex items-center gap-2">
-              <span class="text-lg sm:text-xl font-black tracking-tight text-slate-900 leading-none font-heading">Vamos Bharat</span>
-              <span class="text-[10px] bg-gradient-to-r from-orange-500 to-amber-500 text-white font-black px-1.5 py-0.5 rounded shadow-xs">SIH '26</span>
+            <div class="flex items-center gap-1.5 sm:gap-2">
+              <span class="text-base sm:text-xl font-black tracking-tight text-slate-900 leading-none font-heading">Vamos Bharat</span>
+              <span class="text-[9px] sm:text-[10px] bg-gradient-to-r from-orange-500 to-amber-500 text-white font-black px-1.5 py-0.5 rounded shadow-xs">SIH '26</span>
             </div>
-            <span class="hidden sm:block text-xs font-semibold text-slate-500 mt-0.5">Tourist Safety & Fair Price Guardian</span>
+            <span class="hidden lg:block text-xs font-semibold text-slate-500 mt-0.5">Tourist Safety & Fair Price Guardian</span>
           </div>
         </div>
 
         <!-- Center: Clean Navigation Tabs (Desktop/Tablet) -->
-        <nav class="hidden md:flex items-center gap-1 bg-slate-100/90 p-1.5 rounded-2xl border border-slate-200/80">
-          <button data-nav-target="home-view" class="px-3.5 py-2 rounded-xl text-xs font-bold text-blue-600 bg-white shadow-xs transition">
+        <nav class="hidden lg:flex items-center gap-1 bg-slate-100/90 p-1.5 rounded-2xl border border-slate-200/80 flex-shrink-0">
+          <button data-nav-target="home-view" class="nav-pill-btn px-3.5 py-2 rounded-xl text-xs font-extrabold text-blue-600 bg-white shadow-xs transition">
             🏠 Explore
           </button>
           
-          <button data-nav-target="wishlist-view" class="px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-blue-600 transition relative">
+          <button data-nav-target="wishlist-view" class="nav-pill-btn px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:text-blue-600 transition relative">
             ❤️ Saved
             <span class="wishlist-badge-count text-[10px] bg-blue-600 text-white font-bold px-1.5 py-0.2 rounded-full hidden ml-1">0</span>
           </button>
 
-          <button data-nav-target="ai-chat-view" class="px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-blue-600 transition">
+          <button data-nav-target="ai-chat-view" class="nav-pill-btn px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:text-blue-600 transition">
             🤖 AI Guardian
           </button>
 
-          <button data-nav-target="translation-view" class="px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-blue-600 transition">
+          <button data-nav-target="translation-view" class="nav-pill-btn px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:text-blue-600 transition">
             🌐 Translator
           </button>
 
-          <button data-nav-target="profile-view" class="px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-blue-600 transition">
-            👤 Profile
-          </button>
-
-          <button onclick="window.App.openScamGuideModal()" class="px-3 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-blue-600 transition">
+          <button onclick="window.App.openScamGuideModal()" class="px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:text-blue-600 transition">
             🛡️ Scam Guide
           </button>
         </nav>
 
-        <!-- Right: Location Badge, SOS & Profile Button -->
-        <div class="flex items-center gap-2.5 sm:gap-3.5 flex-shrink-0">
+        <!-- Right: Location Badge, Notifications, SOS & Dedicated Profile Button -->
+        <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
           
           <!-- Interactive Manual Location Selector Button -->
-          <button id="manual-location-btn" class="flex items-center gap-1.5 sm:gap-2 bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 px-2.5 sm:px-3.5 py-2 rounded-2xl text-xs font-bold text-emerald-900 shadow-xs transition active:scale-95 group" title="Click to Change Your Location">
-            <span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-500 flex-shrink-0 animate-pulse"></span>
-            <span id="header-location-badge-text" class="truncate max-w-[110px] sm:max-w-[170px] text-xs">📍 New Delhi</span>
-            <span class="text-[10px] bg-emerald-200 text-emerald-800 font-extrabold px-1.5 py-0.5 rounded group-hover:bg-emerald-300 hidden sm:inline">Change ▾</span>
+          <button id="manual-location-btn" class="flex items-center gap-1.5 bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 px-2.5 sm:px-3 py-2 rounded-2xl text-xs font-bold text-emerald-900 shadow-xs transition active:scale-95 group" title="Click to Change Your Active Location">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0 animate-pulse"></span>
+            <span id="header-location-badge-text" class="truncate max-w-[80px] sm:max-w-[130px] md:max-w-[150px] text-xs font-extrabold">📍 New Delhi</span>
+            <span class="text-[10px] bg-emerald-200 text-emerald-800 font-extrabold px-1 py-0.5 rounded group-hover:bg-emerald-300 hidden md:inline">Change ▾</span>
           </button>
 
           <!-- Notification Bell -->
-          <button id="notification-bell-btn" class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-700 relative transition shadow-xs" title="Tourist Advisories">
+          <button id="notification-bell-btn" class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-700 relative transition shadow-xs flex-shrink-0" title="Tourist Safety Advisories">
             <span class="text-sm sm:text-base">🔔</span>
             <span class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-rose-500 text-white text-[10px] font-bold flex items-center justify-center ring-2 ring-white">2</span>
           </button>
 
           <!-- High-Contrast Emergency SOS Button -->
-          <button data-trigger-sos class="sos-glow-button px-3.5 sm:px-4.5 py-2 sm:py-2.5 rounded-2xl bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-700 hover:to-red-700 text-white text-xs font-extrabold shadow-md shadow-rose-600/30 flex items-center gap-1.5 sm:gap-2 transition transform active:scale-95" title="Emergency SOS Dispatch">
+          <button data-trigger-sos class="sos-glow-button px-3 sm:px-4 py-2 sm:py-2.5 rounded-2xl bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-700 hover:to-red-700 text-white text-xs font-extrabold shadow-md shadow-rose-600/30 flex items-center gap-1.5 transition transform active:scale-95 flex-shrink-0" title="Emergency SOS Dispatch">
             <span class="text-sm sm:text-base">🚨</span>
-            <span class="font-extrabold">SOS 112</span>
+            <span class="font-extrabold hidden sm:inline">SOS 112</span>
+            <span class="font-extrabold sm:hidden">SOS</span>
           </button>
 
-          <!-- User Profile Avatar/Chip -->
-          <div data-nav-target="profile-view" class="flex items-center gap-2.5 pl-2.5 border-l border-slate-200 cursor-pointer group" title="View Safety Profile & Settings">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80" alt="Alex Morgan" class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl object-cover border-2 border-blue-600 group-hover:ring-2 group-hover:ring-blue-400 shadow-sm transition" />
-            <div class="hidden xl:block text-left">
-              <span id="header-user-greeting" class="text-xs font-extrabold text-slate-900 block leading-tight">Alex Morgan</span>
-              <span class="text-[11px] text-slate-500 font-medium">Safety Profile</span>
+          <!-- User Profile Avatar/Chip (Dedicated, Never Hiding, Accessible & High Contrast) -->
+          <button id="header-profile-btn" onclick="window.Router.navigateTo('profile-view')" class="header-profile-chip flex items-center gap-2 sm:gap-2.5 px-2 py-1.5 sm:px-3 sm:py-2 rounded-2xl bg-slate-100/90 hover:bg-slate-200/90 border border-slate-200 cursor-pointer shadow-xs transition active:scale-95 flex-shrink-0 group" title="Safety Profile & ICE Settings">
+            <div class="relative w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center bg-blue-600 text-white text-xs font-black shadow-sm overflow-hidden flex-shrink-0 ring-2 ring-blue-500/50 group-hover:ring-blue-600">
+              <img id="header-profile-avatar-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80" alt="Alex Morgan" class="w-full h-full object-cover" onerror="this.classList.add('hidden'); document.getElementById('header-profile-avatar-fallback').classList.remove('hidden');" />
+              <span id="header-profile-avatar-fallback" class="hidden font-extrabold text-xs">AM</span>
+              <span class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-white" title="Active Tourist Shield"></span>
             </div>
-          </div>
+            <div class="text-left hidden sm:block">
+              <span id="header-user-greeting" class="text-xs font-extrabold text-slate-900 block leading-tight group-hover:text-blue-600 transition">Alex Morgan</span>
+              <span class="text-[10px] text-slate-500 font-semibold block leading-none mt-0.5">Safety Profile ⚙️</span>
+            </div>
+          </button>
 
         </div>
 
@@ -142,32 +143,32 @@
   <!-- ========================================== -->
   <!-- MAIN CONTAINER FOR DESKTOP SPA VIEWS       -->
   <!-- ========================================== -->
-  <main id="app-main-content" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+  <main id="app-main-content" class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-8">
     
     <!-- ========================================== -->
     <!-- VIEW 1: HOME DASHBOARD                     -->
     <!-- ========================================== -->
-    <section id="home-view" class="app-view space-y-10 sm:space-y-12">
+    <section id="home-view" class="app-view space-y-8 sm:space-y-10">
       
       <!-- Section: Clean Hero Banner -->
-      <div class="hero-gradient-bg rounded-3xl p-6 sm:p-14 text-white shadow-xl relative overflow-hidden flex flex-col items-center text-center space-y-6">
+      <div class="hero-gradient-bg rounded-3xl p-6 sm:p-12 text-white shadow-xl relative overflow-hidden flex flex-col items-center text-center space-y-6">
         
         <div class="max-w-3xl space-y-3 z-10">
           <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md text-xs font-bold text-white border border-white/20 shadow-sm">
             <span>🇮🇳</span> <span>Vamos Bharat · National Smart Tourism Shield</span>
           </div>
-          <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight font-heading">
-            Explore India with Safety & Trust 🇮🇳
+          <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight font-heading">
+            Explore India with Safety, Fair Prices & Trust 🇮🇳
           </h1>
-          <p class="text-xs sm:text-base text-blue-100 leading-relaxed max-w-2xl mx-auto font-normal">
-            Discover world-heritage monuments, check fair auto fares, and explore hidden nature gems with verified emergency security.
+          <p class="text-xs sm:text-sm lg:text-base text-blue-100 leading-relaxed max-w-2xl mx-auto font-normal">
+            Verified monument tariffs, official auto fare protector, AI scam guardian, multi-lingual phrasebook & 1-tap SOS response for every traveler.
           </p>
         </div>
 
         <!-- Integrated Clean Search Bar -->
         <div class="w-full max-w-2xl relative z-10 mt-1">
           <span class="absolute inset-y-0 left-0 pl-4.5 flex items-center pointer-events-none text-slate-400 text-lg">🔍</span>
-          <input type="text" id="global-search-input" placeholder="Search Taj Mahal, Sikkim, Red Fort, Munnar, Jaipur, Udaipur..." class="w-full pl-12 pr-4 py-4 sm:py-4.5 bg-white rounded-2xl text-xs sm:text-sm font-medium text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-blue-400/50 shadow-2xl transition" />
+          <input type="text" id="global-search-input" placeholder="Search Taj Mahal, Red Fort, Jaipur, Sikkim, Munnar, Goa, Udaipur..." class="w-full pl-12 pr-4 py-4 bg-white rounded-2xl text-xs sm:text-sm font-medium text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-blue-400/50 shadow-2xl transition" />
         </div>
 
         <!-- Quick Search Tags -->
@@ -186,26 +187,112 @@
         <div class="absolute -left-16 -top-16 w-80 h-80 bg-orange-400/15 rounded-full blur-3xl pointer-events-none"></div>
       </div>
 
-      <!-- Section: AI Price & Safety Guardian Spotlight Card -->
-      <div class="bg-gradient-to-r from-blue-50/90 via-white to-slate-50 border border-blue-200/80 rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
-        <div class="space-y-2 max-w-2xl text-left">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold">
-            <span>🤖</span> <span>Vamos AI Travel Guardian</span>
+      <!-- Section: Real-Time Safety Status Ribbon -->
+      <div class="bg-white border border-slate-200/90 rounded-3xl p-4 sm:p-5 shadow-xs flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg font-bold border border-emerald-200">
+            📍
           </div>
-          <h2 class="text-xl font-black text-slate-900 font-heading">Fair Fare & Tourist Scam Protection</h2>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-            Check official government auto/cab meter rates, verify ticket prices, and avoid tourist overcharging before you ride.
-          </p>
+          <div>
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 block">Active Tourist Location</span>
+            <div class="flex items-center gap-2">
+              <span id="hero-safety-location-text" class="text-sm font-extrabold text-slate-900">New Delhi · Low Risk Corridor</span>
+              <button onclick="window.App.openLocationModal()" class="text-xs text-blue-600 font-bold hover:underline">Change</button>
+            </div>
+          </div>
         </div>
 
-        <div class="flex flex-wrap items-center gap-3 flex-shrink-0">
-          <button onclick="window.Router.navigateTo('ai-chat-view', { presetQuery: 'Auto fare estimate from Station to Red Fort' })" class="px-5 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-600/20 transition flex items-center gap-2 active:scale-95">
-            <span>🚕</span> <span>Estimate Auto Fare</span>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-lg font-bold border border-blue-200">
+            🛡️
+          </div>
+          <div>
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 block">Emergency Readiness</span>
+            <span class="text-xs font-extrabold text-emerald-700">24x7 Tourist Shield & ICE Active</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button onclick="window.Router.navigateTo('profile-view')" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold transition flex items-center gap-1.5">
+            <span>👤</span> <span>Manage Profile & ICE</span>
           </button>
-          <button onclick="window.Router.navigateTo('ai-chat-view', { presetQuery: 'Taj Mahal guide scam check and ticket cost' })" class="px-5 py-3 rounded-2xl bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 text-xs font-bold transition flex items-center gap-2 shadow-xs active:scale-95">
-            <span>🚨</span> <span>Check Tourist Scams</span>
+          <button onclick="window.SOSSystem.openModal()" class="px-4 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-xs font-bold transition flex items-center gap-1.5">
+            <span>🚨</span> <span>SOS Distress Hub</span>
           </button>
         </div>
+      </div>
+
+      <!-- Section: 4 Quick Feature Spotlight Action Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+        
+        <!-- Card 1: Fare Calculator -->
+        <div onclick="window.Router.navigateTo('ai-chat-view', { presetQuery: 'Auto fare estimate from Station to Red Fort' })" class="bg-white border border-slate-200/90 hover:border-blue-300 hover:shadow-md rounded-3xl p-5 transition-all cursor-pointer flex flex-col justify-between group space-y-3">
+          <div class="flex items-center justify-between">
+            <div class="w-10 h-10 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl font-bold group-hover:scale-110 transition">
+              🚕
+            </div>
+            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-blue-50 text-blue-700">Govt Rates</span>
+          </div>
+          <div>
+            <h3 class="text-sm font-extrabold text-slate-900 group-hover:text-blue-600 transition">Fair Fare Estimator</h3>
+            <p class="text-xs text-slate-500 mt-1">Check official auto & taxi meter tariffs before riding.</p>
+          </div>
+          <span class="text-xs font-bold text-blue-600 flex items-center gap-1 pt-1">
+            Calculate Fare <span>➔</span>
+          </span>
+        </div>
+
+        <!-- Card 2: Scam Prevention Guide -->
+        <div onclick="window.App.openScamGuideModal()" class="bg-white border border-slate-200/90 hover:border-amber-300 hover:shadow-md rounded-3xl p-5 transition-all cursor-pointer flex flex-col justify-between group space-y-3">
+          <div class="flex items-center justify-between">
+            <div class="w-10 h-10 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl font-bold group-hover:scale-110 transition">
+              🛡️
+            </div>
+            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-amber-50 text-amber-700">Tourist Shield</span>
+          </div>
+          <div>
+            <h3 class="text-sm font-extrabold text-slate-900 group-hover:text-amber-600 transition">Scam Prevention</h3>
+            <p class="text-xs text-slate-500 mt-1">Protect yourself against fake guides & tourist traps.</p>
+          </div>
+          <span class="text-xs font-bold text-amber-600 flex items-center gap-1 pt-1">
+            View Scam Guide <span>➔</span>
+          </span>
+        </div>
+
+        <!-- Card 3: Audio Translator -->
+        <div onclick="window.Router.navigateTo('translation-view')" class="bg-white border border-slate-200/90 hover:border-indigo-300 hover:shadow-md rounded-3xl p-5 transition-all cursor-pointer flex flex-col justify-between group space-y-3">
+          <div class="flex items-center justify-between">
+            <div class="w-10 h-10 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl font-bold group-hover:scale-110 transition">
+              🌐
+            </div>
+            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-indigo-50 text-indigo-700">Hindi Voice</span>
+          </div>
+          <div>
+            <h3 class="text-sm font-extrabold text-slate-900 group-hover:text-indigo-600 transition">Audio Phrasebook</h3>
+            <p class="text-xs text-slate-500 mt-1">Translate emergency & travel phrases with native speech.</p>
+          </div>
+          <span class="text-xs font-bold text-indigo-600 flex items-center gap-1 pt-1">
+            Open Translator <span>➔</span>
+          </span>
+        </div>
+
+        <!-- Card 4: Safety & ICE Profile -->
+        <div onclick="window.Router.navigateTo('profile-view')" class="bg-white border border-slate-200/90 hover:border-emerald-300 hover:shadow-md rounded-3xl p-5 transition-all cursor-pointer flex flex-col justify-between group space-y-3">
+          <div class="flex items-center justify-between">
+            <div class="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl font-bold group-hover:scale-110 transition">
+              👤
+            </div>
+            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-50 text-emerald-700">ICE Setup</span>
+          </div>
+          <div>
+            <h3 class="text-sm font-extrabold text-slate-900 group-hover:text-emerald-600 transition">Safety Profile</h3>
+            <p class="text-xs text-slate-500 mt-1">Configure emergency contacts with automated GPS SMS.</p>
+          </div>
+          <span class="text-xs font-bold text-emerald-600 flex items-center gap-1 pt-1">
+            Setup Contacts <span>➔</span>
+          </span>
+        </div>
+
       </div>
 
       <!-- Section: Famous Places (3-Column Desktop Grid) -->
@@ -576,7 +663,10 @@
         
         <!-- Left: Profile Badge Card (4 Cols) -->
         <div class="lg:col-span-4 bg-white border border-slate-200 rounded-3xl p-8 shadow-sm text-center space-y-5">
-          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Avatar" class="w-24 h-24 rounded-full object-cover mx-auto ring-4 ring-blue-600/30 shadow-md" />
+          <div class="relative w-24 h-24 rounded-full mx-auto ring-4 ring-blue-600/30 shadow-md overflow-hidden bg-blue-600 flex items-center justify-center text-white text-2xl font-black">
+            <img id="profile-badge-avatar-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Avatar" class="w-full h-full object-cover" onerror="this.classList.add('hidden'); document.getElementById('profile-badge-avatar-fallback').classList.remove('hidden');" />
+            <span id="profile-badge-avatar-fallback" class="hidden">AM</span>
+          </div>
           <div>
             <h3 id="profile-display-name" class="text-lg font-black text-slate-900 font-heading">Alex Morgan</h3>
             <span class="inline-block text-xs font-bold bg-emerald-100 text-emerald-800 px-3.5 py-1 rounded-full mt-1.5 border border-emerald-200">
@@ -659,25 +749,25 @@
   <!-- RESPONSIVE MOBILE BOTTOM NAVIGATION BAR    -->
   <!-- ========================================== -->
   <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 flex items-center justify-around py-2 px-1 shadow-lg">
-    <button data-nav-target="home-view" class="flex flex-col items-center gap-0.5 text-blue-600 px-2 py-1">
+    <button data-nav-target="home-view" class="mobile-nav-btn flex flex-col items-center gap-0.5 text-blue-600 font-extrabold px-2 py-1">
       <span class="text-base">🏠</span>
-      <span class="text-[10px] font-bold">Explore</span>
+      <span class="text-[10px]">Explore</span>
     </button>
-    <button data-nav-target="wishlist-view" class="flex flex-col items-center gap-0.5 text-slate-500 hover:text-blue-600 px-2 py-1">
+    <button data-nav-target="wishlist-view" class="mobile-nav-btn flex flex-col items-center gap-0.5 text-slate-500 hover:text-blue-600 px-2 py-1 relative">
       <span class="text-base">❤️</span>
-      <span class="text-[10px] font-bold">Saved</span>
+      <span class="text-[10px]">Saved</span>
     </button>
-    <button data-trigger-sos class="flex flex-col items-center gap-0.5 bg-rose-600 text-white px-3 py-1 rounded-2xl shadow-md -mt-4 ring-4 ring-white">
+    <button data-trigger-sos class="flex flex-col items-center gap-0.5 bg-rose-600 text-white px-3.5 py-1.5 rounded-2xl shadow-md -mt-4 ring-4 ring-white active:scale-95 transition">
       <span class="text-base">🚨</span>
       <span class="text-[10px] font-black">SOS</span>
     </button>
-    <button data-nav-target="ai-chat-view" class="flex flex-col items-center gap-0.5 text-slate-500 hover:text-blue-600 px-2 py-1">
+    <button data-nav-target="ai-chat-view" class="mobile-nav-btn flex flex-col items-center gap-0.5 text-slate-500 hover:text-blue-600 px-2 py-1">
       <span class="text-base">🤖</span>
-      <span class="text-[10px] font-bold">AI Chat</span>
+      <span class="text-[10px]">AI Chat</span>
     </button>
-    <button data-nav-target="profile-view" class="flex flex-col items-center gap-0.5 text-slate-500 hover:text-blue-600 px-2 py-1">
+    <button data-nav-target="profile-view" class="mobile-nav-btn flex flex-col items-center gap-0.5 text-slate-500 hover:text-blue-600 px-2 py-1">
       <span class="text-base">👤</span>
-      <span class="text-[10px] font-bold">Profile</span>
+      <span class="text-[10px]">Profile</span>
     </button>
   </nav>
 

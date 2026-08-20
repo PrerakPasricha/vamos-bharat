@@ -17,6 +17,14 @@ const Router = {
 
     // Wire up navigation elements
     this.bindEvents();
+
+    // Check initial URL hash
+    if (window.location.hash) {
+      const hashView = window.location.hash.replace("#", "");
+      if (document.getElementById(hashView)) {
+        this.navigateTo(hashView, {}, false);
+      }
+    }
   },
 
   bindEvents() {
@@ -110,17 +118,39 @@ const Router = {
   },
 
   updateNavState(viewName) {
-    document.querySelectorAll("[data-nav-target]").forEach(btn => {
+    // 1. Desktop Nav Pills
+    document.querySelectorAll(".nav-pill-btn").forEach(btn => {
       const target = btn.getAttribute("data-nav-target");
-
       if (target === viewName) {
-        btn.classList.add("text-blue-600", "bg-white", "shadow-xs", "font-bold");
-        btn.classList.remove("text-slate-600", "bg-transparent");
+        btn.classList.add("bg-white", "text-blue-600", "shadow-xs", "font-extrabold");
+        btn.classList.remove("text-slate-600", "hover:text-blue-600");
       } else {
-        btn.classList.remove("text-blue-600", "bg-white", "shadow-xs", "font-bold");
-        btn.classList.add("text-slate-600", "bg-transparent");
+        btn.classList.remove("bg-white", "text-blue-600", "shadow-xs", "font-extrabold");
+        btn.classList.add("text-slate-600", "hover:text-blue-600");
       }
     });
+
+    // 2. Mobile Bottom Nav Buttons
+    document.querySelectorAll(".mobile-nav-btn").forEach(btn => {
+      const target = btn.getAttribute("data-nav-target");
+      if (target === viewName) {
+        btn.classList.add("text-blue-600", "font-extrabold");
+        btn.classList.remove("text-slate-500");
+      } else {
+        btn.classList.remove("text-blue-600", "font-extrabold");
+        btn.classList.add("text-slate-500");
+      }
+    });
+
+    // 3. Header Profile Button Highlight
+    const profileBtn = document.getElementById("header-profile-btn");
+    if (profileBtn) {
+      if (viewName === "profile-view") {
+        profileBtn.classList.add("is-active-view");
+      } else {
+        profileBtn.classList.remove("is-active-view");
+      }
+    }
   }
 };
 
