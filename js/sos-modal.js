@@ -4,11 +4,6 @@
 
 const SOSSystem = {
   modal: null,
-  isSirenPlaying: false,
-  audioCtx: null,
-  oscillator: null,
-  gainNode: null,
-  sirenInterval: null,
 
   init() {
     this.modal = document.getElementById("sos-modal");
@@ -34,14 +29,6 @@ const SOSSystem = {
     if (closeBtn) {
       closeBtn.addEventListener("click", () => {
         this.closeModal();
-      });
-    }
-
-    // Siren Toggle
-    const sirenBtn = document.getElementById("toggle-siren-btn");
-    if (sirenBtn) {
-      sirenBtn.addEventListener("click", () => {
-        this.toggleSiren();
       });
     }
 
@@ -75,7 +62,6 @@ const SOSSystem = {
 
   closeModal() {
     if (!this.modal) return;
-    this.stopSiren();
     this.modal.classList.add("hidden");
     this.modal.classList.remove("flex");
     document.body.classList.remove("overflow-hidden");
@@ -101,94 +87,6 @@ const SOSSystem = {
     if (confirmed) {
       // In a real device, this triggers tel: protocol
       window.location.href = `tel:${number}`;
-    }
-  },
-
-  toggleSiren() {
-    if (this.isSirenPlaying) {
-      this.stopSiren();
-    } else {
-      this.startSiren();
-    }
-  },
-
-  startSiren() {
-    try {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      this.audioCtx = new AudioContext();
-      
-      this.oscillator = this.audioCtx.createOscillator();
-      this.gainNode = this.audioCtx.createGain();
-
-      this.oscillator.type = "sawtooth";
-      this.gainNode.gain.setValueAtTime(0.3, this.audioCtx.currentTime);
-
-      this.oscillator.connect(this.gainNode);
-      this.gainNode.connect(this.audioCtx.destination);
-      this.oscillator.start();
-
-      let freqHigh = true;
-      this.oscillator.frequency.setValueAtTime(900, this.audioCtx.currentTime);
-
-      this.sirenInterval = setInterval(() => {
-        if (!this.audioCtx || !this.oscillator) return;
-        freqHigh = !freqHigh;
-        const targetFreq = freqHigh ? 950 : 650;
-        this.oscillator.frequency.exponentialRampToValueAtTime(targetFreq, this.audioCtx.currentTime + 0.25);
-      }, 350);
-
-      this.isSirenPlaying = true;
-      this.updateSirenUI(true);
-    } catch (e) {
-      console.error("Audio synthesizer failed:", e);
-      alert("⚠️ Siren activated in silent mock mode (Audio not permitted by browser autoplay policy).");
-      this.isSirenPlaying = true;
-      this.updateSirenUI(true);
-    }
-  },
-
-  stopSiren() {
-    if (this.sirenInterval) {
-      clearInterval(this.sirenInterval);
-      this.sirenInterval = null;
-    }
-
-    if (this.oscillator) {
-      try {
-        this.oscillator.stop();
-        this.oscillator.disconnect();
-      } catch (e) {}
-      this.oscillator = null;
-    }
-
-    if (this.audioCtx) {
-      try {
-        this.audioCtx.close();
-      } catch (e) {}
-      this.audioCtx = null;
-    }
-
-    this.isSirenPlaying = false;
-    this.updateSirenUI(false);
-  },
-
-  updateSirenUI(active) {
-    const btn = document.getElementById("toggle-siren-btn");
-    const statusText = document.getElementById("siren-status-text");
-    const sirenBox = document.getElementById("sos-siren-box");
-
-    if (btn) {
-      if (active) {
-        btn.classList.add("bg-rose-600", "text-white", "animate-pulse");
-        btn.classList.remove("bg-white", "text-rose-600");
-        if (statusText) statusText.innerText = "🚨 LOUD SIREN ACTIVE (Tap to Mute)";
-        if (sirenBox) sirenBox.classList.add("ring-4", "ring-rose-400", "animate-pulse");
-      } else {
-        btn.classList.remove("bg-rose-600", "text-white", "animate-pulse");
-        btn.classList.add("bg-white", "text-rose-600");
-        if (statusText) statusText.innerText = "🔊 Tap for Loud Emergency Siren / Whistle";
-        if (sirenBox) sirenBox.classList.remove("ring-4", "ring-rose-400", "animate-pulse");
-      }
     }
   },
 
