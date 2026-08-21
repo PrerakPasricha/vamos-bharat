@@ -242,36 +242,58 @@ const App = {
     const avatarImg = document.getElementById("header-profile-avatar-img");
     const avatarFallback = document.getElementById("header-profile-avatar-fallback");
 
+    if (avatarFallback) {
+      avatarFallback.innerText = initials || "AM";
+    }
+
     if (avatarImg) {
       if (profile.avatar) {
         avatarImg.src = profile.avatar;
         avatarImg.classList.remove("hidden");
         if (avatarFallback) avatarFallback.classList.add("hidden");
+      } else {
+        avatarImg.classList.add("hidden");
+        if (avatarFallback) avatarFallback.classList.remove("hidden");
       }
       avatarImg.onerror = () => {
         avatarImg.classList.add("hidden");
         if (avatarFallback) {
           avatarFallback.classList.remove("hidden");
-          avatarFallback.innerText = initials;
+          avatarFallback.innerText = initials || "AM";
         }
+      };
+      avatarImg.onload = () => {
+        avatarImg.classList.remove("hidden");
+        if (avatarFallback) avatarFallback.classList.add("hidden");
       };
     }
 
     const badgeAvatarImg = document.getElementById("profile-badge-avatar-img");
     const badgeAvatarFallback = document.getElementById("profile-badge-avatar-fallback");
 
+    if (badgeAvatarFallback) {
+      badgeAvatarFallback.innerText = initials || "AM";
+    }
+
     if (badgeAvatarImg) {
       if (profile.avatar) {
         badgeAvatarImg.src = profile.avatar;
         badgeAvatarImg.classList.remove("hidden");
         if (badgeAvatarFallback) badgeAvatarFallback.classList.add("hidden");
+      } else {
+        badgeAvatarImg.classList.add("hidden");
+        if (badgeAvatarFallback) badgeAvatarFallback.classList.remove("hidden");
       }
       badgeAvatarImg.onerror = () => {
         badgeAvatarImg.classList.add("hidden");
         if (badgeAvatarFallback) {
           badgeAvatarFallback.classList.remove("hidden");
-          badgeAvatarFallback.innerText = initials;
+          badgeAvatarFallback.innerText = initials || "AM";
         }
+      };
+      badgeAvatarImg.onload = () => {
+        badgeAvatarImg.classList.remove("hidden");
+        if (badgeAvatarFallback) badgeAvatarFallback.classList.add("hidden");
       };
     }
   },

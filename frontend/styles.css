@@ -113,11 +113,13 @@ h1, h2, h3, h4, .font-heading {
 /* Profile Chip Interactive Styles */
 .header-profile-chip {
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
 }
 
 .header-profile-chip:hover {
   background-color: #F1F5F9;
   border-color: #93C5FD;
+  transform: translateY(-1px);
 }
 
 .header-profile-chip.is-active-view {
