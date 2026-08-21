@@ -117,19 +117,14 @@ h1, h2, h3, h4, .font-heading {
 }
 
 .header-profile-chip:hover {
-  background-color: #F1F5F9;
-  border-color: #93C5FD;
-  transform: translateY(-1px);
+  border-color: #3B82F6 !important;
+  background-color: #EFF6FF !important;
 }
 
 .header-profile-chip.is-active-view {
-  background-color: #EFF6FF !important;
-  border-color: #3B82F6 !important;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.35) !important;
-}
-
-.header-profile-chip.is-active-view span#header-user-greeting {
-  color: #1D4ED8 !important;
+  border-color: #2563EB !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.35) !important;
+  background-color: #DBEAFE !important;
 }
 
 /* Line Clamp Utilities */
